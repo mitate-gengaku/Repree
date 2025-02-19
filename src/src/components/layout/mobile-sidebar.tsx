@@ -13,9 +13,13 @@ import {
 } from "@/components/ui/sidebar";
 import { ThemeSwitch } from "@/features/theme/components/theme-switch";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useDownload } from "@/hooks/use-download";
 
 export function MobileSidebar() {
   const isMobile = useIsMobile();
+  const {
+    onDownloadImage
+  } = useDownload()
 
   return (
     <Sidebar>
@@ -31,7 +35,7 @@ export function MobileSidebar() {
               <UploadIcon />
               Upload
             </SidebarMenuButton>
-            <SidebarMenuButton>
+            <SidebarMenuButton onClick={() => onDownloadImage()}>
               <CameraIcon />
               Screenshot
             </SidebarMenuButton>

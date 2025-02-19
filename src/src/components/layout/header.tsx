@@ -22,7 +22,7 @@ export const Header = ({ children }: Props) => {
       <div className="px-4 mx-auto h-12 flex justify-start items-center gap-2 relative md:static">
         {isMobile && (
           <>
-            <SidebarTrigger />
+            <SidebarTrigger className="absolute left-4" />
             <MobileSidebar />
           </>
         )}
