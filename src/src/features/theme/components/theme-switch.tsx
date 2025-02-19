@@ -7,7 +7,7 @@ export const ThemeSwitch = () => {
 
   return (
     <Switch
-      className="data-[state=checked]:bg-sky-600 data-[state=checked]:dark:bg-sky-900"
+      className="data-[state=checked]:bg-sky-600"
       checked={theme === "dark" || theme === "system"}
       onCheckedChange={() =>
         onHandleTheme(theme === "light" ? "dark" : "light")
