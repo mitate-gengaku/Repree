@@ -1,0 +1,26 @@
+name: Create release note
+
+on:
+  pull_request: 
+    types: 
+      - closed
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Create release tag and note
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: ${{ github.event.pull_request.title }}
+        uses: release-drafter/release-drafter@v5
+        with: 
+          tag: ${{ env.RELEASE_TAG }}
+          name: ${{ env.RELEASE_TAG }}
+          version: ${{ env.RELEASE_TAG }}
+          publish: true
