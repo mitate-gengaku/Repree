@@ -15,7 +15,7 @@ import { useTheme } from "@/features/theme/hooks/use-theme";
 
 export const ToggleThemeButton = () => {
   const [isLoad, setLoad] = React.useState(false);
-  const { theme, onCustomTheme } = useTheme();
+  const { theme, onHandleTheme } = useTheme();
 
   React.useEffect(() => {
     setLoad(true);
@@ -51,13 +51,13 @@ export const ToggleThemeButton = () => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="center" className="min-w-fit">
-        <DropdownMenuItem onClick={() => onCustomTheme("light")}>
+        <DropdownMenuItem onClick={() => onHandleTheme("light")}>
           <SunIcon />
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => onCustomTheme("dark")}>
+        <DropdownMenuItem onClick={() => onHandleTheme("dark")}>
           <MoonIcon />
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => onCustomTheme("system")}>
+        <DropdownMenuItem onClick={() => onHandleTheme("system")}>
           <MonitorCogIcon />
         </DropdownMenuItem>
       </DropdownMenuContent>
