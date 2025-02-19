@@ -1,101 +1,194 @@
-import Image from "next/image";
+"use client"
+import ELK from 'elkjs/lib/elk.bundled.js';
+import React, { useCallback, useLayoutEffect } from 'react';
+import {
+  Background,
+  ReactFlow,
+  ReactFlowProvider,
+  addEdge,
+  Panel,
+  useNodesState,
+  useEdgesState,
+  useReactFlow,
+  Connection,
+  Edge,
+  Node,
+} from '@xyflow/react';
+ 
+import '@xyflow/react/dist/style.css';
+ 
+ 
+const elk = new ELK();
+ 
+// Elk has a *huge* amount of options to configure. To see everything you can
+// tweak check out:
+//
+// - https://www.eclipse.org/elk/reference/algorithms.html
+// - https://www.eclipse.org/elk/reference/options.html
+const elkOptions = {
+  'elk.algorithm': 'layered',
+  'elk.layered.spacing.nodeNodeBetweenLayers': '100',
+  'elk.spacing.nodeNode': '80',
+};
+ 
+const getLayoutedElements = (nodes: Node[], edges: Edge[], options = {}) => {
+  const isHorizontal = options?.['elk.direction'] === 'RIGHT';
+  const graph = {
+    id: 'root',
+    layoutOptions: options,
+    children: nodes.map((node) => ({
+      ...node,
+      // Adjust the target and source handle positions based on the layout
+      // direction.
+      targetPosition: isHorizontal ? 'left' : 'top',
+      sourcePosition: isHorizontal ? 'right' : 'bottom',
+ 
+      // Hardcode a width and height for elk to use when layouting.
+      width: 150,
+      height: 50,
+    })),
+    edges: edges,
+  };
+ 
+  return elk
+    .layout(graph)
+    .then((layoutedGraph) => ({
+      nodes: layoutedGraph.children.map((node) => ({
+        ...node,
+        // React Flow expects a position property on the node instead of `x`
+        // and `y` fields.
+        position: { x: node.x, y: node.y },
+      })),
+ 
+      edges: layoutedGraph.edges,
+    }))
+    .catch(console.error);
+};
+ 
 
-export default function Home() {
+const position = { x: 0, y: 0 };
+ 
+export const initialNodes: Node[] = [
+  {
+    id: '1',
+    type: 'input',
+    data: { label: 'input' },
+    position,
+  },
+  {
+    id: '2',
+    data: { label: 'node 2' },
+    position,
+  },
+  {
+    id: '2a',
+    data: { label: 'node 2a' },
+    position,
+  },
+  {
+    id: '2b',
+    data: { label: 'node 2b' },
+    position,
+  },
+  {
+    id: '2c',
+    data: { label: 'node 2c' },
+    position,
+  },
+  {
+    id: '2d',
+    data: { label: 'node 2d' },
+    position,
+  },
+  {
+    id: '3',
+    data: { label: 'node 3' },
+    position,
+  },
+  {
+    id: '4',
+    data: { label: 'node 4' },
+    position,
+  },
+  {
+    id: '5',
+    data: { label: 'node 5' },
+    position,
+  },
+  {
+    id: '6',
+    type: 'output',
+    data: { label: 'output' },
+    position,
+  },
+  { id: '7', type: 'output', data: { label: 'output' }, position },
+];
+ 
+export const initialEdges: Edge[] = [
+  { id: 'e12', source: '1', target: '2', type: 'smoothstep' },
+  { id: 'e13', source: '1', target: '3', type: 'smoothstep' },
+  { id: 'e22a', source: '2', target: '2a', type: 'smoothstep' },
+  { id: 'e22b', source: '2', target: '2b', type: 'smoothstep' },
+  { id: 'e22c', source: '2', target: '2c', type: 'smoothstep' },
+  { id: 'e2c2d', source: '2c', target: '2d', type: 'smoothstep' },
+  { id: 'e45', source: '4', target: '5', type: 'smoothstep' },
+  { id: 'e56', source: '5', target: '6', type: 'smoothstep' },
+  { id: 'e57', source: '5', target: '7', type: 'smoothstep' },
+];
+
+export default function LayoutFlow() {
+  const [nodes, setNodes, onNodesChange] = useNodesState<Node>([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
+  const { fitView } = useReactFlow();
+ 
+  const onConnect = useCallback(
+    (connection: Connection) => setEdges((eds) => addEdge(connection, eds)),
+    [],
+  );
+
+  const onLayout = useCallback(
+    ({ direction, useInitialNodes = false }) => {
+      const opts = { 'elk.direction': direction, ...elkOptions };
+      const ns = useInitialNodes ? initialNodes : nodes;
+      const es = useInitialNodes ? initialEdges : edges;
+ 
+      getLayoutedElements(ns, es, opts).then(
+        ({ nodes: layoutedNodes, edges: layoutedEdges }) => {
+          setNodes(layoutedNodes);
+          setEdges(layoutedEdges);
+ 
+          window.requestAnimationFrame(() => fitView());
+        },
+      );
+    },
+    [nodes, edges],
+  );
+ 
+  // Calculate the initial layout on mount.
+  useLayoutEffect(() => {
+    onLayout({ direction: 'DOWN', useInitialNodes: true });
+  }, []);
+ 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    <ReactFlow
+      nodes={nodes}
+      edges={edges}
+      onConnect={onConnect}
+      onNodesChange={onNodesChange}
+      onEdgesChange={onEdgesChange}
+      fitView
+      style={{ backgroundColor: "#F7F9FB" }}
+    >
+      <Panel position="top-right">
+        <button onClick={() => onLayout({ direction: 'DOWN' })}>
+          vertical layout
+        </button>
+ 
+        <button onClick={() => onLayout({ direction: 'RIGHT' })}>
+          horizontal layout
+        </button>
+      </Panel>
+      <Background />
+    </ReactFlow>
   );
 }
