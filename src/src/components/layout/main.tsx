@@ -2,6 +2,7 @@
 
 import { ReactNode } from "react";
 
+import { TypeScriptIcon } from "@/components/icons/typescript";
 import { Sidebar } from "@/components/layout/sidebar";
 import {
   Accordion,
@@ -9,14 +10,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Input } from "@/components/ui/input";
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { TypeScriptIcon } from "@/components/icons/typescript";
 
 interface Props {
   children: ReactNode;
@@ -65,7 +64,9 @@ export const Main = ({ children }: Props) => {
                             path
                           </h4>
                           <div className="px-[2px]">
-                            <p className="leading-[1] text-sm">src/components/libs/flow</p>
+                            <p className="leading-[1] text-sm">
+                              src/components/libs/flow
+                            </p>
                           </div>
                         </div>
                         <div className="flex flex-col gap-1">

@@ -1,7 +1,14 @@
 import { useSetAtom } from "jotai";
 import { CameraIcon, UploadIcon } from "lucide-react";
 
+import { TypeScriptIcon } from "@/components/icons/typescript";
 import { GithubLink } from "@/components/layout/github-link";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import {
   Sidebar,
   SidebarContent,
@@ -16,13 +23,6 @@ import { ThemeSwitch } from "@/features/theme/components/theme-switch";
 import { useDownload } from "@/hooks/use-download";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { openDialogAtom } from "@/stores/dialog";
-import { TypeScriptIcon } from "@/components/icons/typescript";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 
 export function MobileSidebar() {
   const setOpen = useSetAtom(openDialogAtom);
@@ -53,17 +53,15 @@ export function MobileSidebar() {
                     </div>
                   </div>
                   <div className="flex flex-col gap-1">
-                    <h4 className="text-[10px] text-muted-foreground">
-                      path
-                    </h4>
+                    <h4 className="text-[10px] text-muted-foreground">path</h4>
                     <div className="px-[2px]">
-                      <p className="leading-[1] text-sm">src/components/libs/flow</p>
+                      <p className="leading-[1] text-sm">
+                        src/components/libs/flow
+                      </p>
                     </div>
                   </div>
                   <div className="flex flex-col gap-1">
-                    <h4 className="text-[10px] text-muted-foreground">
-                      size
-                    </h4>
+                    <h4 className="text-[10px] text-muted-foreground">size</h4>
                     <div className="px-[2px]">
                       <p className="leading-[1] text-sm">45MB</p>
                     </div>
