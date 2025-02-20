@@ -12,7 +12,7 @@ export const FileNode = memo(
         <div
           className={cn(
             "pb-4 text-sm border bg-white dark:bg-slate-950 w-[17rem] max-w-[17rem] flex flex-col gap-2 rounded shadow duration-200 transition-all",
-            selected &&
+            (selected || data.highlight) &&
               "border-blue-500 dark:border-blue-700 [box-shadow:0_0_20px_0_rgba(56,189,248,.4)]",
           )}
         >

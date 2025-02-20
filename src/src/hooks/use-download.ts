@@ -33,7 +33,6 @@ export const useDownload = () => {
 
     toSvg(element, {
       backgroundColor: "#1a365d",
-      width: imageWidth,
       height: imageHeight,
       style: {
         width: imageWidth.toString(),

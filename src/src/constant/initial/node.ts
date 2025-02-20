@@ -1,1216 +1,1217 @@
+import { FileNodeData } from "@/types/file-node-data";
 import { Node } from "@xyflow/react";
 
-export const initialNodes: Node[] = [
-  {
-    id: "node_0_next.config.ts_db577062-1767-46c3-9a17-8a009e2ed92f",
-    type: "file",
-    data: {
-      label: "next.config.ts",
-      name: "next.config",
-    },
-    position: {
-      x: 12,
-      y: 12,
-    },
-  },
-  {
-    id: "node_1_tailwind.config.ts_3835f629-deae-44c6-b4fb-9721b321be1b",
-    type: "file",
-    data: {
-      label: "tailwind.config.ts",
-      name: "tailwind.config",
-    },
-    position: {
-      x: 182,
-      y: 12,
-    },
-  },
-  {
-    id: "node_2_generate-storage-key.test.ts_2df142d7-a35f-4d70-97c0-c297fa7615b8",
-    type: "file",
-    data: {
-      label: "generate-storage-key.test.ts",
-      name: "generate-storage-key.test",
-    },
-    position: {
-      x: 822,
-      y: 1025,
-    },
-  },
-  {
-    id: "node_3_get-matching-localstorage-data.test.ts_23c3bda3-051b-4296-8063-a2be03bdec8b",
-    type: "file",
-    data: {
-      label: "get-matching-localstorage-data.test.ts",
-      name: "get-matching-localstorage-data.test",
-    },
-    position: {
-      x: 1022,
-      y: 776.5,
-    },
-  },
-  {
-    id: "node_4_transform-data.test.ts_6120079d-8ed9-439e-900b-0261b78c6ffd",
-    type: "file",
-    data: {
-      label: "transform-data.test.ts",
-      name: "transform-data.test",
-    },
-    position: {
-      x: 822,
-      y: 1532,
-    },
-  },
-  {
-    id: "node_5_setup.ts_e76ddaea-8e43-4400-b9c0-13fe7bb859ac",
-    type: "file",
-    data: {
-      label: "setup.ts",
-      name: "setup",
-    },
-    position: {
-      x: 352,
-      y: 12,
-    },
-  },
-  {
-    id: "node_6_theme.ts_43c480c4-1517-4c9f-8152-90d1c79f5377",
-    type: "file",
-    data: {
-      label: "theme.ts",
-      name: "theme",
-    },
-    position: {
-      x: 612,
-      y: 776.5,
-    },
-  },
-  {
-    id: "node_7_utils.ts_be1f496d-ab67-40bb-8ec5-f17aab9c653b",
-    type: "file",
-    data: {
-      label: "utils.ts",
-      name: "utils",
-    },
-    position: {
-      x: 612,
-      y: 1175,
-    },
-  },
-  {
-    id: "node_8_use-is-touch-device.ts_c8d15bfb-260f-4e2a-904b-a646e8cccb80",
-    type: "file",
-    data: {
-      label: "use-is-touch-device.ts",
-      name: "use-is-touch-device",
-    },
-    position: {
-      x: 1422,
-      y: 1215,
-    },
-  },
-  {
-    id: "node_9_use-mobile.tsx_ff61e46c-e56e-409d-a69c-46a1c7c5e8c2",
-    type: "file",
-    data: {
-      label: "use-mobile.tsx",
-      name: "use-mobile",
-    },
-    position: {
-      x: 1422,
-      y: 580.5,
-    },
-  },
-  {
-    id: "node_10_use-theme.ts_b42f6e00-467d-490a-870d-c93ffb7c3971",
-    type: "file",
-    data: {
-      label: "use-theme.ts",
-      name: "use-theme",
-    },
-    position: {
-      x: 822,
-      y: 701.5,
-    },
-  },
-  {
-    id: "node_11_toggle-button.tsx_f1d23a57-1775-4d81-b81b-f7888b28fd8f",
-    type: "file",
-    data: {
-      label: "toggle-button.tsx",
-      name: "toggle-button",
-    },
-    position: {
-      x: 1022,
-      y: 701.5,
-    },
-  },
-  {
-    id: "node_12_download-picture.ts_edfc3ecc-76e9-48da-abec-c58bb52eeb07",
-    type: "file",
-    data: {
-      label: "download-picture.ts",
-      name: "download-picture",
-    },
-    position: {
-      x: 612,
-      y: 2495,
-    },
-  },
-  {
-    id: "node_13_generate-storage-key.ts_734efea7-b5e1-4982-afa0-24844bd6343c",
-    type: "file",
-    data: {
-      label: "generate-storage-key.ts",
-      name: "generate-storage-key",
-    },
-    position: {
-      x: 612,
-      y: 1025,
-    },
-  },
-  {
-    id: "node_14_get-matching-localstorage-data.ts_82b81255-8982-46d1-ac1d-63ecb5ecc73d",
-    type: "file",
-    data: {
-      label: "get-matching-localstorage-data.ts",
-      name: "get-matching-localstorage-data",
-    },
-    position: {
-      x: 822,
-      y: 800,
-    },
-  },
-  {
-    id: "node_15_transform-data.ts_43aa254f-06d9-4d6d-a35e-6dfa76f5d3ca",
-    type: "file",
-    data: {
-      label: "transform-data.ts",
-      name: "transform-data",
-    },
-    position: {
-      x: 617,
-      y: 1532,
-    },
-  },
-  {
-    id: "node_16_custom-handle-props.ts_ebdb03e9-dc1d-43c4-a564-5ab1cf2487fe",
-    type: "file",
-    data: {
-      label: "custom-handle-props.ts",
-      name: "custom-handle-props",
-    },
-    position: {
-      x: 412,
-      y: 2345,
-    },
-  },
-  {
-    id: "node_17_empty-object.ts_98fdd992-3997-4ca0-ac51-8387a9b19fb2",
-    type: "file",
-    data: {
-      label: "empty-object.ts",
-      name: "empty-object",
-    },
-    position: {
-      x: 12,
-      y: 1532,
-    },
-  },
-  {
-    id: "node_18_flow-data.ts_74e3ae29-e4d5-4e99-bca3-a38e4ab219fb",
-    type: "file",
-    data: {
-      label: "flow-data.ts",
-      name: "flow-data",
-    },
-    position: {
-      x: 612,
-      y: 1382,
-    },
-  },
-  {
-    id: "node_19_job-data.ts_5701eb98-95b5-4cdd-a2f9-7e6de6c88597",
-    type: "file",
-    data: {
-      label: "job-data.ts",
-      name: "job-data",
-    },
-    position: {
-      x: 212,
-      y: 1307,
-    },
-  },
-  {
-    id: "node_20_result-node.ts_2881766e-9aa5-44cf-8f6e-a1ea3f181047",
-    type: "file",
-    data: {
-      label: "result-node.ts",
-      name: "result-node",
-    },
-    position: {
-      x: 412,
-      y: 1457,
-    },
-  },
-  {
-    id: "node_21_step-data.ts_19653aef-7835-4ae4-ade8-1da32688e963",
-    type: "file",
-    data: {
-      label: "step-data.ts",
-      name: "step-data",
-    },
-    position: {
-      x: 212,
-      y: 1232,
-    },
-  },
-  {
-    id: "node_22_tree-node.ts_4e461aee-6cac-4de3-b9d4-b463eddc0229",
-    type: "file",
-    data: {
-      label: "tree-node.ts",
-      name: "tree-node",
-    },
-    position: {
-      x: 412,
-      y: 1382,
-    },
-  },
-  {
-    id: "node_23_workflow-data.ts_0e30ee7c-e39a-40d6-b57c-d27de5dec424",
-    type: "file",
-    data: {
-      label: "workflow-data.ts",
-      name: "workflow-data",
-    },
-    position: {
-      x: 212,
-      y: 1382,
-    },
-  },
-  {
-    id: "node_24_workflow-output.ts_d04fc4c0-c99d-4511-a99a-45e073bf6c5b",
-    type: "file",
-    data: {
-      label: "workflow-output.ts",
-      name: "workflow-output",
-    },
-    position: {
-      x: 412,
-      y: 1532,
-    },
-  },
-  {
-    id: "node_25_connection.ts_a6520578-c6ec-42ca-8b71-d5cabbbd7e1e",
-    type: "file",
-    data: {
-      label: "connection.ts",
-      name: "connection",
-    },
-    position: {
-      x: 612,
-      y: 1878,
-    },
-  },
-  {
-    id: "node_26_edge.ts_f5842c61-40bc-4c9d-86f3-aa4711b8fba3",
-    type: "file",
-    data: {
-      label: "edge.ts",
-      name: "edge",
-    },
-    position: {
-      x: 522,
-      y: 12,
-    },
-  },
-  {
-    id: "node_27_node.ts_44e4ff81-8c27-4034-b455-7ccb1b39b01f",
-    type: "file",
-    data: {
-      label: "node.ts",
-      name: "node",
-    },
-    position: {
-      x: 692,
-      y: 12,
-    },
-  },
-  {
-    id: "node_28_open-export-dialog.ts_dadb3261-c19f-4195-be57-6be29ef2e2ec",
-    type: "file",
-    data: {
-      label: "open-export-dialog.ts",
-      name: "open-export-dialog",
-    },
-    position: {
-      x: 822,
-      y: 2028,
-    },
-  },
-  {
-    id: "node_29_open-save-data-dialog.ts_47131ce9-edfb-4bbc-ba74-3b1b0b65b547",
-    type: "file",
-    data: {
-      label: "open-save-data-dialog.ts",
-      name: "open-save-data-dialog",
-    },
-    position: {
-      x: 1022,
-      y: 1237.5,
-    },
-  },
-  {
-    id: "node_30_save-data.ts_dc1fc542-98c1-407f-9f99-b56c3e2744cd",
-    type: "file",
-    data: {
-      label: "save-data.ts",
-      name: "save-data",
-    },
-    position: {
-      x: 822,
-      y: 1382,
-    },
-  },
-  {
-    id: "node_31_workflow-code.ts_80809ae8-f90d-412f-9ce8-13cb286539ff",
-    type: "file",
-    data: {
-      label: "workflow-code.ts",
-      name: "workflow-code",
-    },
-    position: {
-      x: 612,
-      y: 1832,
-    },
-  },
-  {
-    id: "node_32_page.tsx_0c91f8bd-a9c3-4c54-981f-963b43745369",
-    type: "file",
-    data: {
-      label: "page.tsx",
-      name: "page",
-    },
-    position: {
-      x: 1412,
-      y: 22,
-    },
-  },
-  {
-    id: "node_33_use-data-storage.ts_4e7c3b1f-93db-42fe-9d2b-c5f9852146b3",
-    type: "file",
-    data: {
-      label: "use-data-storage.ts",
-      name: "use-data-storage",
-    },
-    position: {
-      x: 1022,
-      y: 1607,
-    },
-  },
-  {
-    id: "node_34_use-download.ts_8b71b930-179f-44d9-81ec-9ea19dd54391",
-    type: "file",
-    data: {
-      label: "use-download.ts",
-      name: "use-download",
-    },
-    position: {
-      x: 822,
-      y: 2495,
-    },
-  },
-  {
-    id: "node_35_use-export-dialog.ts_482870aa-cab5-4023-a728-3048d60edfed",
-    type: "file",
-    data: {
-      label: "use-export-dialog.ts",
-      name: "use-export-dialog",
-    },
-    position: {
-      x: 1022,
-      y: 2028,
-    },
-  },
-  {
-    id: "node_36_use-export.ts_2e8a9900-a8ff-43fe-af92-381b64fc2a04",
-    type: "file",
-    data: {
-      label: "use-export.ts",
-      name: "use-export",
-    },
-    position: {
-      x: 822,
-      y: 1832,
-    },
-  },
-  {
-    id: "node_37_use-fit-view.ts_509ce5d4-6db6-448e-9a29-f87106e1b854",
-    type: "file",
-    data: {
-      label: "use-fit-view.ts",
-      name: "use-fit-view",
-    },
-    position: {
-      x: 1022,
-      y: 2074,
-    },
-  },
-  {
-    id: "node_38_use-handle-node.ts_23e6c9e3-eb30-49d0-b9e9-8ab494c4f963",
-    type: "file",
-    data: {
-      label: "use-handle-node.ts",
-      name: "use-handle-node",
-    },
-    position: {
-      x: 822,
-      y: 153,
-    },
-  },
-  {
-    id: "node_39_use-zoom-in.ts_6632a8ba-5b7c-441c-b162-4951b150f68e",
-    type: "file",
-    data: {
-      label: "use-zoom-in.ts",
-      name: "use-zoom-in",
-    },
-    position: {
-      x: 1022,
-      y: 2397.5,
-    },
-  },
-  {
-    id: "node_40_use-zoom-level.ts_128c00d5-87f4-4a95-9392-0f1199ac7b35",
-    type: "file",
-    data: {
-      label: "use-zoom-level.ts",
-      name: "use-zoom-level",
-    },
-    position: {
-      x: 1022,
-      y: 2149,
-    },
-  },
-  {
-    id: "node_41_use-zoom-out.ts_20d4b591-ef8d-4092-ab0e-cc754b8029e9",
-    type: "file",
-    data: {
-      label: "use-zoom-out.ts",
-      name: "use-zoom-out",
-    },
-    position: {
-      x: 1022,
-      y: 2224,
-    },
-  },
-  {
-    id: "node_42_on-options.ts_9d5f0876-4b5a-42e3-b1e6-5696ffa0b86f",
-    type: "file",
-    data: {
-      label: "on-options.ts",
-      name: "on-options",
-    },
-    position: {
-      x: 1022,
-      y: 534.5,
-    },
-  },
-  {
-    id: "node_43_runs-options.ts_decf6a10-53af-4754-9b46-b11932a0a4a7",
-    type: "file",
-    data: {
-      label: "runs-options.ts",
-      name: "runs-options",
-    },
-    position: {
-      x: 1022,
-      y: 78,
-    },
-  },
-  {
-    id: "node_44_edge.ts_00fbdd1b-15b5-4e7d-8d53-92cd4a4e4874",
-    type: "file",
-    data: {
-      label: "edge.ts",
-      name: "edge",
-    },
-    position: {
-      x: 612,
-      y: 1607,
-    },
-  },
-  {
-    id: "node_45_node.ts_c0047e7b-e900-4207-acb5-bea530d3b8e3",
-    type: "file",
-    data: {
-      label: "node.ts",
-      name: "node",
-    },
-    position: {
-      x: 612,
-      y: 1457,
-    },
-  },
-  {
-    id: "node_46_react-flow.tsx_23cc16f5-8353-4bd2-ba5d-6f79b4df5e75",
-    type: "file",
-    data: {
-      label: "react-flow.tsx",
-      name: "react-flow",
-    },
-    position: {
-      x: 1622,
-      y: 2495,
-    },
-  },
-  {
-    id: "node_47_save-data-dialog.tsx_83979963-5ea5-42bc-8772-1ba35956570a",
-    type: "file",
-    data: {
-      label: "save-data-dialog.tsx",
-      name: "save-data-dialog",
-    },
-    position: {
-      x: 1222,
-      y: 1237.5,
-    },
-  },
-  {
-    id: "node_48_job-node.tsx_778c08be-4923-42cc-9bd8-4d36d754af67",
-    type: "file",
-    data: {
-      label: "job-node.tsx",
-      name: "job-node",
-    },
-    position: {
-      x: 822,
-      y: 2420,
-    },
-  },
-  {
-    id: "node_49_step-node.tsx_a2274fdb-ea95-4881-9dab-870c136ad90f",
-    type: "file",
-    data: {
-      label: "step-node.tsx",
-      name: "step-node",
-    },
-    position: {
-      x: 822,
-      y: 1953,
-    },
-  },
-  {
-    id: "node_50_workflow-node.tsx_244091a4-6173-45d5-9053-f65bf3d07fb9",
-    type: "file",
-    data: {
-      label: "workflow-node.tsx",
-      name: "workflow-node",
-    },
-    position: {
-      x: 822,
-      y: 2345,
-    },
-  },
-  {
-    id: "node_51_create-node-button.tsx_263f70cc-fb02-4207-889c-1d20fc65a509",
-    type: "file",
-    data: {
-      label: "create-node-button.tsx",
-      name: "create-node-button",
-    },
-    position: {
-      x: 1022,
-      y: 153,
-    },
-  },
-  {
-    id: "node_52_header-menu.tsx_df842ccd-37a7-4df7-bc40-00da6be276fd",
-    type: "file",
-    data: {
-      label: "header-menu.tsx",
-      name: "header-menu",
-    },
-    position: {
-      x: 1222,
-      y: 1682,
-    },
-  },
-  {
-    id: "node_53_sidebar-menu.tsx_b43960cd-c55e-4d7b-9f50-baba9664add4",
-    type: "file",
-    data: {
-      label: "sidebar-menu.tsx",
-      name: "sidebar-menu",
-    },
-    position: {
-      x: 1222,
-      y: 557,
-    },
-  },
-  {
-    id: "node_54_custom-source-handle.tsx_9d6a4e9f-f9d9-436b-939d-05ff40adbf8f",
-    type: "file",
-    data: {
-      label: "custom-source-handle.tsx",
-      name: "custom-source-handle",
-    },
-    position: {
-      x: 617,
-      y: 2345,
-    },
-  },
-  {
-    id: "node_55_custom-target-handle.tsx_1678ee65-2961-4f85-b0b3-71ce62da15e8",
-    type: "file",
-    data: {
-      label: "custom-target-handle.tsx",
-      name: "custom-target-handle",
-    },
-    position: {
-      x: 617,
-      y: 1953,
-    },
-  },
-  {
-    id: "node_56_code-block.tsx_2d684122-36d0-4828-84b8-2e06de5ca50f",
-    type: "file",
-    data: {
-      label: "code-block.tsx",
-      name: "code-block",
-    },
-    position: {
-      x: 1222,
-      y: 1930.5,
-    },
-  },
-  {
-    id: "node_57_copy-button.tsx_a69ac0b5-ba93-4d7a-982d-fd3076b0f9b9",
-    type: "file",
-    data: {
-      label: "copy-button.tsx",
-      name: "copy-button",
-    },
-    position: {
-      x: 1022,
-      y: 1930.5,
-    },
-  },
-  {
-    id: "node_58_download-form.tsx_00ccaffa-b75d-4152-af20-f33952a0deb4",
-    type: "file",
-    data: {
-      label: "download-form.tsx",
-      name: "download-form",
-    },
-    position: {
-      x: 1022,
-      y: 1757,
-    },
-  },
-  {
-    id: "node_59_export-dialog.tsx_a5fc124b-bac6-452e-89b5-5f1b7af37109",
-    type: "file",
-    data: {
-      label: "export-dialog.tsx",
-      name: "export-dialog",
-    },
-    position: {
-      x: 1422,
-      y: 1930.5,
-    },
-  },
-  {
-    id: "node_60_download-button.tsx_b14d650e-3ce3-42f3-b0ac-946b5afdad12",
-    type: "file",
-    data: {
-      label: "download-button.tsx",
-      name: "download-button",
-    },
-    position: {
-      x: 1022,
-      y: 2495,
-    },
-  },
-  {
-    id: "node_61_control-panel.tsx_587d3304-c19c-4c01-af14-a9e042da1a06",
-    type: "file",
-    data: {
-      label: "control-panel.tsx",
-      name: "control-panel",
-    },
-    position: {
-      x: 1422,
-      y: 2472.5,
-    },
-  },
-  {
-    id: "node_62_download-control.tsx_0b41599c-9de0-4389-a6f7-66d65446dff1",
-    type: "file",
-    data: {
-      label: "download-control.tsx",
-      name: "download-control",
-    },
-    position: {
-      x: 1222,
-      y: 2397.5,
-    },
-  },
-  {
-    id: "node_63_fit-view-control.tsx_5400a352-ff47-4a31-b7f2-d2516f2004aa",
-    type: "file",
-    data: {
-      label: "fit-view-control.tsx",
-      name: "fit-view-control",
-    },
-    position: {
-      x: 1222,
-      y: 2074,
-    },
-  },
-  {
-    id: "node_64_save-node-control.tsx_1f910ffa-3dde-4be6-817c-253b5d33496e",
-    type: "file",
-    data: {
-      label: "save-node-control.tsx",
-      name: "save-node-control",
-    },
-    position: {
-      x: 1222,
-      y: 2299,
-    },
-  },
-  {
-    id: "node_65_zoom-in-control.tsx_736fe678-db1a-4832-8ae6-16f5d6c4e681",
-    type: "file",
-    data: {
-      label: "zoom-in-control.tsx",
-      name: "zoom-in-control",
-    },
-    position: {
-      x: 1222,
-      y: 2472.5,
-    },
-  },
-  {
-    id: "node_66_zoom-level-control.tsx_cbf7276d-42b3-4ec6-8d17-738d5e15ac7e",
-    type: "file",
-    data: {
-      label: "zoom-level-control.tsx",
-      name: "zoom-level-control",
-    },
-    position: {
-      x: 1222,
-      y: 2149,
-    },
-  },
-  {
-    id: "node_67_zoom-out-control.tsx_c6f068af-e123-4d4b-a822-a0f69bbd824a",
-    type: "file",
-    data: {
-      label: "zoom-out-control.tsx",
-      name: "zoom-out-control",
-    },
-    position: {
-      x: 1222,
-      y: 2224,
-    },
-  },
-  {
-    id: "node_68_accordion.tsx_483a9ed3-1aff-4d62-9b46-3aed907db094",
-    type: "file",
-    data: {
-      label: "accordion.tsx",
-      name: "accordion",
-    },
-    position: {
-      x: 1022,
-      y: 453,
-    },
-  },
-  {
-    id: "node_69_button.tsx_77f8e8c6-1454-4e83-9020-eb12fc5a000b",
-    type: "file",
-    data: {
-      label: "button.tsx",
-      name: "button",
-    },
-    position: {
-      x: 822,
-      y: 1175,
-    },
-  },
-  {
-    id: "node_70_checkbox.tsx_bf88fc34-6164-4d15-9b8b-d857a1a231f9",
-    type: "file",
-    data: {
-      label: "checkbox.tsx",
-      name: "checkbox",
-    },
-    position: {
-      x: 822,
-      y: 1100,
-    },
-  },
-  {
-    id: "node_71_dialog.tsx_f1c592e7-465c-43e5-a157-87eb77d52b05",
-    type: "file",
-    data: {
-      label: "dialog.tsx",
-      name: "dialog",
-    },
-    position: {
-      x: 1022,
-      y: 1283.5,
-    },
-  },
-  {
-    id: "node_72_dropdown-menu.tsx_a39f4b73-76e5-4e7a-b12c-058dc2c6331d",
-    type: "file",
-    data: {
-      label: "dropdown-menu.tsx",
-      name: "dropdown-menu",
-    },
-    position: {
-      x: 822,
-      y: 626.5,
-    },
-  },
-  {
-    id: "node_73_input.tsx_b6812e9d-885c-4eb0-8b31-75511fa7a63c",
-    type: "file",
-    data: {
-      label: "input.tsx",
-      name: "input",
-    },
-    position: {
-      x: 1022,
-      y: 303,
-    },
-  },
-  {
-    id: "node_74_label.tsx_a9f710ca-74ce-4735-9dd6-84c0e83cd22f",
-    type: "file",
-    data: {
-      label: "label.tsx",
-      name: "label",
-    },
-    position: {
-      x: 822,
-      y: 1757,
-    },
-  },
-  {
-    id: "node_75_menubar.tsx_870c9eae-af6b-4c68-9b8b-aebdccc2cee0",
-    type: "file",
-    data: {
-      label: "menubar.tsx",
-      name: "menubar",
-    },
-    position: {
-      x: 1022,
-      y: 1682,
-    },
-  },
-  {
-    id: "node_76_resizable.tsx_26fa5700-7ed6-4a5d-b925-aae49de6e082",
-    type: "file",
-    data: {
-      label: "resizable.tsx",
-      name: "resizable",
-    },
-    position: {
-      x: 1622,
-      y: 557,
-    },
-  },
-  {
-    id: "node_77_scroll-area.tsx_c2775603-846e-49aa-9adf-0246c2e06b39",
-    type: "file",
-    data: {
-      label: "scroll-area.tsx",
-      name: "scroll-area",
-    },
-    position: {
-      x: 1022,
-      y: 1358.5,
-    },
-  },
-  {
-    id: "node_78_select.tsx_aec641f2-8b45-4b17-bb1e-67eb77b305fe",
-    type: "file",
-    data: {
-      label: "select.tsx",
-      name: "select",
-    },
-    position: {
-      x: 1022,
-      y: 228,
-    },
-  },
-  {
-    id: "node_79_separator.tsx_cc7d7ddd-fd46-468c-b764-d5f6cc0a7231",
-    type: "file",
-    data: {
-      label: "separator.tsx",
-      name: "separator",
-    },
-    position: {
-      x: 822,
-      y: 476.5,
-    },
-  },
-  {
-    id: "node_80_sheet.tsx_f8bc62ac-a71f-47d5-9f62-b2a6ed370b4b",
-    type: "file",
-    data: {
-      label: "sheet.tsx",
-      name: "sheet",
-    },
-    position: {
-      x: 822,
-      y: 430.5,
-    },
-  },
-  {
-    id: "node_81_sidebar.tsx_57736df6-71e7-439a-a630-1045fb7549be",
-    type: "file",
-    data: {
-      label: "sidebar.tsx",
-      name: "sidebar",
-    },
-    position: {
-      x: 1222,
-      y: 1358.5,
-    },
-  },
-  {
-    id: "node_82_skeleton.tsx_7a900d51-28cd-4fe1-8194-bd6082049626",
-    type: "file",
-    data: {
-      label: "skeleton.tsx",
-      name: "skeleton",
-    },
-    position: {
-      x: 822,
-      y: 875,
-    },
-  },
-  {
-    id: "node_83_sonner.tsx_ab8cf281-c437-4c19-9fca-d11cd2bbfc43",
-    type: "file",
-    data: {
-      label: "sonner.tsx",
-      name: "sonner",
-    },
-    position: {
-      x: 612,
-      y: 1260,
-    },
-  },
-  {
-    id: "node_84_switch.tsx_04298128-1ffc-49e0-b846-0b416ea509b6",
-    type: "file",
-    data: {
-      label: "switch.tsx",
-      name: "switch",
-    },
-    position: {
-      x: 822,
-      y: 1283.5,
-    },
-  },
-  {
-    id: "node_85_table.tsx_70d0bd31-2471-48c7-b14f-d35b19056f1f",
-    type: "file",
-    data: {
-      label: "table.tsx",
-      name: "table",
-    },
-    position: {
-      x: 822,
-      y: 950,
-    },
-  },
-  {
-    id: "node_86_tabs.tsx_c2227427-e167-4c38-9ff7-a3dd0da425cd",
-    type: "file",
-    data: {
-      label: "tabs.tsx",
-      name: "tabs",
-    },
-    position: {
-      x: 1222,
-      y: 1583.5,
-    },
-  },
-  {
-    id: "node_87_textarea.tsx_444599c4-5bdb-4343-b9f8-2a3072266f29",
-    type: "file",
-    data: {
-      label: "textarea.tsx",
-      name: "textarea",
-    },
-    position: {
-      x: 1022,
-      y: 378,
-    },
-  },
-  {
-    id: "node_88_tooltip.tsx_e9a18e29-9360-4b87-a08c-37a2c79819e2",
-    type: "file",
-    data: {
-      label: "tooltip.tsx",
-      name: "tooltip",
-    },
-    position: {
-      x: 1022,
-      y: 2299,
-    },
-  },
-  {
-    id: "node_89_theme-provider.tsx_100ddb24-a01c-4f42-a590-3fdf543338ab",
-    type: "file",
-    data: {
-      label: "theme-provider.tsx",
-      name: "theme-provider",
-    },
-    position: {
-      x: 1222,
-      y: 1283.5,
-    },
-  },
-  {
-    id: "node_90_spinner.tsx_1b5b6aa5-177f-485b-b0c7-30203875168f",
-    type: "file",
-    data: {
-      label: "spinner.tsx",
-      name: "spinner",
-    },
-    position: {
-      x: 822,
-      y: 551.5,
-    },
-  },
-  {
-    id: "node_91_header.tsx_175ea475-e50c-4033-8d33-38f7e423e4bc",
-    type: "file",
-    data: {
-      label: "header.tsx",
-      name: "header",
-    },
-    position: {
-      x: 1622,
-      y: 701.5,
-    },
-  },
-  {
-    id: "node_92_main.tsx_115ecde0-6be1-48d5-91a6-ccce5f36881e",
-    type: "file",
-    data: {
-      label: "main.tsx",
-      name: "main",
-    },
-    position: {
-      x: 1822,
-      y: 2495,
-    },
-  },
-  {
-    id: "node_93_mobile-sidebar.tsx_1746f79c-99e0-409f-afeb-c18de5eb191f",
-    type: "file",
-    data: {
-      label: "mobile-sidebar.tsx",
-      name: "mobile-sidebar",
-    },
-    position: {
-      x: 1422,
-      y: 701.5,
-    },
-  },
-  {
-    id: "node_94_sidebar.tsx_a86a6910-b567-47e2-9c99-e10bd9f47c14",
-    type: "file",
-    data: {
-      label: "sidebar.tsx",
-      name: "sidebar",
-    },
-    position: {
-      x: 1222,
-      y: 1169,
-    },
-  },
-  {
-    id: "node_95_github.tsx_298184f3-2e79-4d56-897b-c44106e994bd",
-    type: "file",
-    data: {
-      label: "github.tsx",
-      name: "github",
-    },
-    position: {
-      x: 1222,
-      y: 678,
-    },
-  },
-  {
-    id: "node_96_site-logo.tsx_36d7a8c5-fa07-4057-a671-b5a9959a2135",
-    type: "file",
-    data: {
-      label: "site-logo.tsx",
-      name: "site-logo",
-    },
-    position: {
-      x: 1422,
-      y: 655.5,
-    },
-  },
-  {
-    id: "node_97_x.tsx_b3e3d3cf-3100-4012-b7f1-400b522e5ddd",
-    type: "file",
-    data: {
-      label: "x.tsx",
-      name: "x",
-    },
-    position: {
-      x: 862,
-      y: 12,
-    },
-  },
-  {
-    id: "node_98_icon.tsx_f5ac4419-6991-46a7-afeb-aba76494b430",
-    type: "file",
-    data: {
-      label: "icon.tsx",
-      name: "icon",
-    },
-    position: {
-      x: 1032,
-      y: 12,
-    },
-  },
-  {
-    id: "node_99_layout.tsx_b95a1c5d-02c7-41d9-abe6-9cf809bc4c60",
-    type: "file",
-    data: {
-      label: "layout.tsx",
-      name: "layout",
-    },
-    position: {
-      x: 1422,
-      y: 1283.5,
-    },
-  },
-  {
-    id: "node_100_page.tsx_31d61bc5-7bcf-435d-8e6d-a34078b44fad",
-    type: "file",
-    data: {
-      label: "page.tsx",
-      name: "page",
-    },
-    position: {
-      x: 1202,
-      y: 22,
-    },
-  },
-];
+export const initialNodes: Node<FileNodeData>[] = [
+    {
+        "id": "node_0_next.config.ts_a7833f34-5f66-4c42-a91e-0a0480c94a7c",
+        "type": "file",
+        "data": {
+            "label": "next.config.ts",
+            "name": "next.config"
+        },
+        "position": {
+            "x": 12,
+            "y": 12
+        }
+    },
+    {
+        "id": "node_1_tailwind.config.ts_572f15d2-e133-449e-8bdb-0205c2ccc133",
+        "type": "file",
+        "data": {
+            "label": "tailwind.config.ts",
+            "name": "tailwind.config"
+        },
+        "position": {
+            "x": 282,
+            "y": 12
+        }
+    },
+    {
+        "id": "node_2_generate-storage-key.test.ts_bdc9c407-1e42-482c-b773-c2a48f8dd14b",
+        "type": "file",
+        "data": {
+            "label": "generate-storage-key.test.ts",
+            "name": "generate-storage-key.test"
+        },
+        "position": {
+            "x": 3692,
+            "y": 2246
+        }
+    },
+    {
+        "id": "node_3_get-matching-localstorage-data.test.ts_9a242785-4f64-408a-ad72-e8acc3631ea7",
+        "type": "file",
+        "data": {
+            "label": "get-matching-localstorage-data.test.ts",
+            "name": "get-matching-localstorage-data.test"
+        },
+        "position": {
+            "x": 3992,
+            "y": 1665
+        }
+    },
+    {
+        "id": "node_4_transform-data.test.ts_f80c80e1-7c43-428e-b740-c27f977b7f88",
+        "type": "file",
+        "data": {
+            "label": "transform-data.test.ts",
+            "name": "transform-data.test"
+        },
+        "position": {
+            "x": 3692,
+            "y": 3449
+        }
+    },
+    {
+        "id": "node_5_setup.ts_256de04d-6f84-4074-99b6-45e3a64071b2",
+        "type": "file",
+        "data": {
+            "label": "setup.ts",
+            "name": "setup"
+        },
+        "position": {
+            "x": 552,
+            "y": 12
+        }
+    },
+    {
+        "id": "node_6_theme.ts_128e7ddf-15d3-4a93-b899-e8c774eaa43d",
+        "type": "file",
+        "data": {
+            "label": "theme.ts",
+            "name": "theme"
+        },
+        "position": {
+            "x": 3382,
+            "y": 1665
+        }
+    },
+    {
+        "id": "node_7_utils.ts_5901b6df-6d9e-4ee5-afcc-4b12fe518ee3",
+        "type": "file",
+        "data": {
+            "label": "utils.ts",
+            "name": "utils"
+        },
+        "position": {
+            "x": 3382,
+            "y": 2586
+        }
+    },
+    {
+        "id": "node_8_use-is-touch-device.ts_77537617-499c-413e-a542-dce99c5c1b98",
+        "type": "file",
+        "data": {
+            "label": "use-is-touch-device.ts",
+            "name": "use-is-touch-device"
+        },
+        "position": {
+            "x": 4592,
+            "y": 2657
+        }
+    },
+    {
+        "id": "node_9_use-mobile.tsx_b936ad00-4800-490a-b1a8-f039f9e01451",
+        "type": "file",
+        "data": {
+            "label": "use-mobile.tsx",
+            "name": "use-mobile"
+        },
+        "position": {
+            "x": 4592,
+            "y": 1184
+        }
+    },
+    {
+        "id": "node_10_use-theme.ts_e8d15633-c375-4ffa-b4dc-f191ce25e6eb",
+        "type": "file",
+        "data": {
+            "label": "use-theme.ts",
+            "name": "use-theme"
+        },
+        "position": {
+            "x": 3692,
+            "y": 1495
+        }
+    },
+    {
+        "id": "node_11_toggle-button.tsx_aef83643-c711-4002-9ffa-64c38c14bd84",
+        "type": "file",
+        "data": {
+            "label": "toggle-button.tsx",
+            "name": "toggle-button"
+        },
+        "position": {
+            "x": 3992,
+            "y": 1495
+        }
+    },
+    {
+        "id": "node_12_download-picture.ts_e1d91faa-17d6-4aa7-9e0f-95db3bbe0d68",
+        "type": "file",
+        "data": {
+            "label": "download-picture.ts",
+            "name": "download-picture"
+        },
+        "position": {
+            "x": 3382,
+            "y": 5742
+        }
+    },
+    {
+        "id": "node_13_generate-storage-key.ts_94d05005-be89-4c34-a45f-fc32fd043e32",
+        "type": "file",
+        "data": {
+            "label": "generate-storage-key.ts",
+            "name": "generate-storage-key"
+        },
+        "position": {
+            "x": 3382,
+            "y": 2246
+        }
+    },
+    {
+        "id": "node_14_get-matching-localstorage-data.ts_a5fcc12d-933e-48fc-88d8-6b37a3d1bb8b",
+        "type": "file",
+        "data": {
+            "label": "get-matching-localstorage-data.ts",
+            "name": "get-matching-localstorage-data"
+        },
+        "position": {
+            "x": 3692,
+            "y": 1736
+        }
+    },
+    {
+        "id": "node_15_transform-data.ts_e6ccb94f-e6c6-455e-a509-26720a1bbbb2",
+        "type": "file",
+        "data": {
+            "label": "transform-data.ts",
+            "name": "transform-data"
+        },
+        "position": {
+            "x": 3387,
+            "y": 3449
+        }
+    },
+    {
+        "id": "node_16_custom-handle-props.ts_348b4e33-1855-4864-a542-f9750b3bc7b8",
+        "type": "file",
+        "data": {
+            "label": "custom-handle-props.ts",
+            "name": "custom-handle-props"
+        },
+        "position": {
+            "x": 3082,
+            "y": 5402
+        }
+    },
+    {
+        "id": "node_17_empty-object.ts_94e33cb2-fb6c-463a-ad27-500552a992fb",
+        "type": "file",
+        "data": {
+            "label": "empty-object.ts",
+            "name": "empty-object"
+        },
+        "position": {
+            "x": 2482,
+            "y": 3449
+        }
+    },
+    {
+        "id": "node_18_flow-data.ts_ad3b963e-1f1c-4752-84aa-03b58a1cc32e",
+        "type": "file",
+        "data": {
+            "label": "flow-data.ts",
+            "name": "flow-data"
+        },
+        "position": {
+            "x": 3382,
+            "y": 3109
+        }
+    },
+    {
+        "id": "node_19_job-data.ts_045cd26c-58a6-4a69-a0fb-f5393f99e050",
+        "type": "file",
+        "data": {
+            "label": "job-data.ts",
+            "name": "job-data"
+        },
+        "position": {
+            "x": 2782,
+            "y": 2939
+        }
+    },
+    {
+        "id": "node_20_result-node.ts_aa950fbd-af9a-4d32-a9ce-ae3a91c145e2",
+        "type": "file",
+        "data": {
+            "label": "result-node.ts",
+            "name": "result-node"
+        },
+        "position": {
+            "x": 3082,
+            "y": 3279
+        }
+    },
+    {
+        "id": "node_21_step-data.ts_00aac695-4d18-46ab-b8c8-92d3fb95430b",
+        "type": "file",
+        "data": {
+            "label": "step-data.ts",
+            "name": "step-data"
+        },
+        "position": {
+            "x": 2782,
+            "y": 2769
+        }
+    },
+    {
+        "id": "node_22_tree-node.ts_721cc2b2-9d6f-4a23-ad8c-585fcd2e9a67",
+        "type": "file",
+        "data": {
+            "label": "tree-node.ts",
+            "name": "tree-node"
+        },
+        "position": {
+            "x": 3082,
+            "y": 3109
+        }
+    },
+    {
+        "id": "node_23_workflow-data.ts_6d01b51c-1569-4acf-b1c2-252333e10535",
+        "type": "file",
+        "data": {
+            "label": "workflow-data.ts",
+            "name": "workflow-data"
+        },
+        "position": {
+            "x": 2782,
+            "y": 3109
+        }
+    },
+    {
+        "id": "node_24_workflow-output.ts_1e850311-9f01-4b3f-bf14-182a5c4abfc9",
+        "type": "file",
+        "data": {
+            "label": "workflow-output.ts",
+            "name": "workflow-output"
+        },
+        "position": {
+            "x": 3082,
+            "y": 3449
+        }
+    },
+    {
+        "id": "node_25_connection.ts_0193fb77-f4a1-4923-bef0-d1af7064ad5d",
+        "type": "file",
+        "data": {
+            "label": "connection.ts",
+            "name": "connection"
+        },
+        "position": {
+            "x": 3382,
+            "y": 4270
+        }
+    },
+    {
+        "id": "node_26_edge.ts_9c2b7c7c-3598-42b1-9c83-f2cf662bd431",
+        "type": "file",
+        "data": {
+            "label": "edge.ts",
+            "name": "edge"
+        },
+        "position": {
+            "x": 822,
+            "y": 12
+        }
+    },
+    {
+        "id": "node_27_node.ts_d6d28b74-8533-4055-bab9-e341bee931fe",
+        "type": "file",
+        "data": {
+            "label": "node.ts",
+            "name": "node"
+        },
+        "position": {
+            "x": 1092,
+            "y": 12
+        }
+    },
+    {
+        "id": "node_28_open-export-dialog.ts_0f73379f-95d1-476a-90e3-dec50ad00919",
+        "type": "file",
+        "data": {
+            "label": "open-export-dialog.ts",
+            "name": "open-export-dialog"
+        },
+        "position": {
+            "x": 3692,
+            "y": 4610
+        }
+    },
+    {
+        "id": "node_29_open-save-data-dialog.ts_14059883-b021-41de-a95a-71c3fd9d27c3",
+        "type": "file",
+        "data": {
+            "label": "open-save-data-dialog.ts",
+            "name": "open-save-data-dialog"
+        },
+        "position": {
+            "x": 3992,
+            "y": 2727
+        }
+    },
+    {
+        "id": "node_30_save-data.ts_37aab02c-c343-4a43-809a-414574b01040",
+        "type": "file",
+        "data": {
+            "label": "save-data.ts",
+            "name": "save-data"
+        },
+        "position": {
+            "x": 3692,
+            "y": 3109
+        }
+    },
+    {
+        "id": "node_31_workflow-code.ts_e8ab365a-4a89-48cd-ac79-551b642e1a70",
+        "type": "file",
+        "data": {
+            "label": "workflow-code.ts",
+            "name": "workflow-code"
+        },
+        "position": {
+            "x": 3382,
+            "y": 4129
+        }
+    },
+    {
+        "id": "node_32_page.tsx_5629f7b6-6bdb-4ff3-b860-d74baa210af1",
+        "type": "file",
+        "data": {
+            "label": "page.tsx",
+            "name": "page"
+        },
+        "position": {
+            "x": 2212,
+            "y": 22
+        }
+    },
+    {
+        "id": "node_33_use-data-storage.ts_945735c8-c994-4107-b024-3bf3bbf517f4",
+        "type": "file",
+        "data": {
+            "label": "use-data-storage.ts",
+            "name": "use-data-storage"
+        },
+        "position": {
+            "x": 3992,
+            "y": 3619
+        }
+    },
+    {
+        "id": "node_34_use-download.ts_9f349106-0369-42c3-a173-735059f1d047",
+        "type": "file",
+        "data": {
+            "label": "use-download.ts",
+            "name": "use-download"
+        },
+        "position": {
+            "x": 3692,
+            "y": 5742
+        }
+    },
+    {
+        "id": "node_35_use-export-dialog.ts_f2e91497-7a89-4f90-88f7-83105e0fd1ce",
+        "type": "file",
+        "data": {
+            "label": "use-export-dialog.ts",
+            "name": "use-export-dialog"
+        },
+        "position": {
+            "x": 3992,
+            "y": 4610
+        }
+    },
+    {
+        "id": "node_36_use-export.ts_85081226-0e71-471d-ae26-39196d35d49b",
+        "type": "file",
+        "data": {
+            "label": "use-export.ts",
+            "name": "use-export"
+        },
+        "position": {
+            "x": 3692,
+            "y": 4129
+        }
+    },
+    {
+        "id": "node_37_use-fit-view.ts_c7a6f6a8-b85e-4867-a853-eecd267ae407",
+        "type": "file",
+        "data": {
+            "label": "use-fit-view.ts",
+            "name": "use-fit-view"
+        },
+        "position": {
+            "x": 3992,
+            "y": 4751
+        }
+    },
+    {
+        "id": "node_38_use-handle-node.ts_29f57b32-2c34-4f2d-99e3-4401e4b582ad",
+        "type": "file",
+        "data": {
+            "label": "use-handle-node.ts",
+            "name": "use-handle-node"
+        },
+        "position": {
+            "x": 3692,
+            "y": 193
+        }
+    },
+    {
+        "id": "node_39_use-zoom-in.ts_ff5090ae-27d5-4be3-8e3e-a3bb815771e8",
+        "type": "file",
+        "data": {
+            "label": "use-zoom-in.ts",
+            "name": "use-zoom-in"
+        },
+        "position": {
+            "x": 3992,
+            "y": 5502
+        }
+    },
+    {
+        "id": "node_40_use-zoom-level.ts_96550949-46c8-411d-a822-126f0605d43c",
+        "type": "file",
+        "data": {
+            "label": "use-zoom-level.ts",
+            "name": "use-zoom-level"
+        },
+        "position": {
+            "x": 3992,
+            "y": 4921
+        }
+    },
+    {
+        "id": "node_41_use-zoom-out.ts_c4223f14-4149-48a1-bab3-1ced9fa4fd9f",
+        "type": "file",
+        "data": {
+            "label": "use-zoom-out.ts",
+            "name": "use-zoom-out"
+        },
+        "position": {
+            "x": 3992,
+            "y": 5091
+        }
+    },
+    {
+        "id": "node_42_on-options.ts_6f2f1889-c419-46ac-a379-dc3431b4c42a",
+        "type": "file",
+        "data": {
+            "label": "on-options.ts",
+            "name": "on-options"
+        },
+        "position": {
+            "x": 3992,
+            "y": 1043
+        }
+    },
+    {
+        "id": "node_43_runs-options.ts_86170c14-3a45-46e6-8e55-92412a5e51eb",
+        "type": "file",
+        "data": {
+            "label": "runs-options.ts",
+            "name": "runs-options"
+        },
+        "position": {
+            "x": 3992,
+            "y": 23
+        }
+    },
+    {
+        "id": "node_44_edge.ts_3c1b62d9-7994-4e76-833f-bc4689721e50",
+        "type": "file",
+        "data": {
+            "label": "edge.ts",
+            "name": "edge"
+        },
+        "position": {
+            "x": 3382,
+            "y": 3619
+        }
+    },
+    {
+        "id": "node_45_node.ts_a3e22328-2c3d-4a4c-a9e4-a374232afe2a",
+        "type": "file",
+        "data": {
+            "label": "node.ts",
+            "name": "node"
+        },
+        "position": {
+            "x": 3382,
+            "y": 3279
+        }
+    },
+    {
+        "id": "node_46_react-flow.tsx_48a7ce60-18cf-41dc-8808-a68167eb1b46",
+        "type": "file",
+        "data": {
+            "label": "react-flow.tsx",
+            "name": "react-flow"
+        },
+        "position": {
+            "x": 4892,
+            "y": 5742
+        }
+    },
+    {
+        "id": "node_47_save-data-dialog.tsx_a7b4e15d-4388-4199-b9bb-d4c91e8d2513",
+        "type": "file",
+        "data": {
+            "label": "save-data-dialog.tsx",
+            "name": "save-data-dialog"
+        },
+        "position": {
+            "x": 4292,
+            "y": 2727
+        }
+    },
+    {
+        "id": "node_48_job-node.tsx_4d52bbfe-6f96-4e3b-a5e1-52c9281161f1",
+        "type": "file",
+        "data": {
+            "label": "job-node.tsx",
+            "name": "job-node"
+        },
+        "position": {
+            "x": 3692,
+            "y": 5572
+        }
+    },
+    {
+        "id": "node_49_step-node.tsx_fb7ea70b-3c1d-48a9-b6be-f0dacf66354e",
+        "type": "file",
+        "data": {
+            "label": "step-node.tsx",
+            "name": "step-node"
+        },
+        "position": {
+            "x": 3692,
+            "y": 4440
+        }
+    },
+    {
+        "id": "node_50_workflow-node.tsx_3cc5e899-7d10-4c45-b643-369ae7c83319",
+        "type": "file",
+        "data": {
+            "label": "workflow-node.tsx",
+            "name": "workflow-node"
+        },
+        "position": {
+            "x": 3692,
+            "y": 5402
+        }
+    },
+    {
+        "id": "node_51_create-node-button.tsx_1af644ac-1ea6-4074-8de0-92689f780a5f",
+        "type": "file",
+        "data": {
+            "label": "create-node-button.tsx",
+            "name": "create-node-button"
+        },
+        "position": {
+            "x": 3992,
+            "y": 193
+        }
+    },
+    {
+        "id": "node_52_header-menu.tsx_ed18301e-0b0d-41b2-83cf-39c2d28b3c7a",
+        "type": "file",
+        "data": {
+            "label": "header-menu.tsx",
+            "name": "header-menu"
+        },
+        "position": {
+            "x": 4292,
+            "y": 3789
+        }
+    },
+    {
+        "id": "node_53_sidebar-menu.tsx_feb6972c-0067-44f7-8464-5548db23179e",
+        "type": "file",
+        "data": {
+            "label": "sidebar-menu.tsx",
+            "name": "sidebar-menu"
+        },
+        "position": {
+            "x": 4292,
+            "y": 1113
+        }
+    },
+    {
+        "id": "node_54_custom-source-handle.tsx_f7ce262f-2ec7-493e-b21f-e87f803857f4",
+        "type": "file",
+        "data": {
+            "label": "custom-source-handle.tsx",
+            "name": "custom-source-handle"
+        },
+        "position": {
+            "x": 3387,
+            "y": 5402
+        }
+    },
+    {
+        "id": "node_55_custom-target-handle.tsx_fbfb3eeb-08ba-4bfc-b9d2-e2da9d0efa52",
+        "type": "file",
+        "data": {
+            "label": "custom-target-handle.tsx",
+            "name": "custom-target-handle"
+        },
+        "position": {
+            "x": 3387,
+            "y": 4440
+        }
+    },
+    {
+        "id": "node_56_code-block.tsx_97b7e1d1-32c0-4689-aabe-802abab6d76b",
+        "type": "file",
+        "data": {
+            "label": "code-block.tsx",
+            "name": "code-block"
+        },
+        "position": {
+            "x": 4292,
+            "y": 4370
+        }
+    },
+    {
+        "id": "node_57_copy-button.tsx_968b171d-887a-4af8-9405-791f2e57c764",
+        "type": "file",
+        "data": {
+            "label": "copy-button.tsx",
+            "name": "copy-button"
+        },
+        "position": {
+            "x": 3992,
+            "y": 4370
+        }
+    },
+    {
+        "id": "node_58_download-form.tsx_42e6de8f-bbe3-444b-be07-3c24763a3743",
+        "type": "file",
+        "data": {
+            "label": "download-form.tsx",
+            "name": "download-form"
+        },
+        "position": {
+            "x": 3992,
+            "y": 3959
+        }
+    },
+    {
+        "id": "node_59_export-dialog.tsx_bfbc6db1-0b64-454a-a079-1261f8efa77f",
+        "type": "file",
+        "data": {
+            "label": "export-dialog.tsx",
+            "name": "export-dialog"
+        },
+        "position": {
+            "x": 4592,
+            "y": 4370
+        }
+    },
+    {
+        "id": "node_60_download-button.tsx_dc0e2b32-3ce9-43f6-8bac-0cbee18fb588",
+        "type": "file",
+        "data": {
+            "label": "download-button.tsx",
+            "name": "download-button"
+        },
+        "position": {
+            "x": 3992,
+            "y": 5742
+        }
+    },
+    {
+        "id": "node_61_control-panel.tsx_ed23bccb-a831-4fbc-a02d-a123883793ac",
+        "type": "file",
+        "data": {
+            "label": "control-panel.tsx",
+            "name": "control-panel"
+        },
+        "position": {
+            "x": 4592,
+            "y": 5672
+        }
+    },
+    {
+        "id": "node_62_download-control.tsx_8f69c2e2-032d-4e08-b9cb-9ea1140c9c83",
+        "type": "file",
+        "data": {
+            "label": "download-control.tsx",
+            "name": "download-control"
+        },
+        "position": {
+            "x": 4292,
+            "y": 5502
+        }
+    },
+    {
+        "id": "node_63_fit-view-control.tsx_66568bd9-4a0f-4c0f-a779-b1289c4f7c9c",
+        "type": "file",
+        "data": {
+            "label": "fit-view-control.tsx",
+            "name": "fit-view-control"
+        },
+        "position": {
+            "x": 4292,
+            "y": 4751
+        }
+    },
+    {
+        "id": "node_64_save-node-control.tsx_c30e3100-774b-4ef2-90b0-61c65d1daa2d",
+        "type": "file",
+        "data": {
+            "label": "save-node-control.tsx",
+            "name": "save-node-control"
+        },
+        "position": {
+            "x": 4292,
+            "y": 5261
+        }
+    },
+    {
+        "id": "node_65_zoom-in-control.tsx_d796e914-d6f5-42e6-924e-7dcad695f15d",
+        "type": "file",
+        "data": {
+            "label": "zoom-in-control.tsx",
+            "name": "zoom-in-control"
+        },
+        "position": {
+            "x": 4292,
+            "y": 5672
+        }
+    },
+    {
+        "id": "node_66_zoom-level-control.tsx_58ce1777-e8a7-433d-875e-6ec37a3c8dde",
+        "type": "file",
+        "data": {
+            "label": "zoom-level-control.tsx",
+            "name": "zoom-level-control"
+        },
+        "position": {
+            "x": 4292,
+            "y": 4921
+        }
+    },
+    {
+        "id": "node_67_zoom-out-control.tsx_1a09a0e2-493e-4294-8753-3cbfe2b64a6c",
+        "type": "file",
+        "data": {
+            "label": "zoom-out-control.tsx",
+            "name": "zoom-out-control"
+        },
+        "position": {
+            "x": 4292,
+            "y": 5091
+        }
+    },
+    {
+        "id": "node_68_accordion.tsx_b4fa935a-aafd-4cfb-9d9d-3b954e080fd9",
+        "type": "file",
+        "data": {
+            "label": "accordion.tsx",
+            "name": "accordion"
+        },
+        "position": {
+            "x": 3992,
+            "y": 873
+        }
+    },
+    {
+        "id": "node_69_button.tsx_015e4b64-9159-4bfc-8179-1f2e72e66f96",
+        "type": "file",
+        "data": {
+            "label": "button.tsx",
+            "name": "button"
+        },
+        "position": {
+            "x": 3692,
+            "y": 2586
+        }
+    },
+    {
+        "id": "node_70_checkbox.tsx_93b9ba40-ef4e-45cb-be3f-8d330a3ee0bd",
+        "type": "file",
+        "data": {
+            "label": "checkbox.tsx",
+            "name": "checkbox"
+        },
+        "position": {
+            "x": 3692,
+            "y": 2416
+        }
+    },
+    {
+        "id": "node_71_dialog.tsx_bbb0cb34-4a84-41cc-90b0-4b2eb450ab7f",
+        "type": "file",
+        "data": {
+            "label": "dialog.tsx",
+            "name": "dialog"
+        },
+        "position": {
+            "x": 3992,
+            "y": 2868
+        }
+    },
+    {
+        "id": "node_72_dropdown-menu.tsx_960cbb6a-5ab3-4860-94a7-0fd018eee69a",
+        "type": "file",
+        "data": {
+            "label": "dropdown-menu.tsx",
+            "name": "dropdown-menu"
+        },
+        "position": {
+            "x": 3692,
+            "y": 1325
+        }
+    },
+    {
+        "id": "node_73_input.tsx_1979ec3b-d18c-4ed6-9ef4-6db2b5b62c6c",
+        "type": "file",
+        "data": {
+            "label": "input.tsx",
+            "name": "input"
+        },
+        "position": {
+            "x": 3992,
+            "y": 533
+        }
+    },
+    {
+        "id": "node_74_label.tsx_754c66e9-1d82-4f36-aff9-7a6960fd9264",
+        "type": "file",
+        "data": {
+            "label": "label.tsx",
+            "name": "label"
+        },
+        "position": {
+            "x": 3692,
+            "y": 3959
+        }
+    },
+    {
+        "id": "node_75_menubar.tsx_90d2bdf6-6ea3-4d67-a956-fc1942fb7f4e",
+        "type": "file",
+        "data": {
+            "label": "menubar.tsx",
+            "name": "menubar"
+        },
+        "position": {
+            "x": 3992,
+            "y": 3789
+        }
+    },
+    {
+        "id": "node_76_resizable.tsx_a86c13f2-990c-44c4-9fa6-8597b550ae45",
+        "type": "file",
+        "data": {
+            "label": "resizable.tsx",
+            "name": "resizable"
+        },
+        "position": {
+            "x": 4892,
+            "y": 1113
+        }
+    },
+    {
+        "id": "node_77_scroll-area.tsx_4dc786db-1b70-4aa9-94d3-a46bfb77847c",
+        "type": "file",
+        "data": {
+            "label": "scroll-area.tsx",
+            "name": "scroll-area"
+        },
+        "position": {
+            "x": 3992,
+            "y": 3038
+        }
+    },
+    {
+        "id": "node_78_select.tsx_ad72706b-8c09-402d-ae78-2062a8f5dcc1",
+        "type": "file",
+        "data": {
+            "label": "select.tsx",
+            "name": "select"
+        },
+        "position": {
+            "x": 3992,
+            "y": 363
+        }
+    },
+    {
+        "id": "node_79_separator.tsx_ed300b9d-2d93-4955-823c-d0202b3e3997",
+        "type": "file",
+        "data": {
+            "label": "separator.tsx",
+            "name": "separator"
+        },
+        "position": {
+            "x": 3692,
+            "y": 985
+        }
+    },
+    {
+        "id": "node_80_sheet.tsx_2f11cefc-d678-4ec4-b5fa-90c9af0778a6",
+        "type": "file",
+        "data": {
+            "label": "sheet.tsx",
+            "name": "sheet"
+        },
+        "position": {
+            "x": 3692,
+            "y": 803
+        }
+    },
+    {
+        "id": "node_81_sidebar.tsx_6342df18-aeb7-4107-80c5-b8467db08ef9",
+        "type": "file",
+        "data": {
+            "label": "sidebar.tsx",
+            "name": "sidebar"
+        },
+        "position": {
+            "x": 4292,
+            "y": 3038
+        }
+    },
+    {
+        "id": "node_82_skeleton.tsx_4cc5a3cb-92d9-4d5f-b307-ce37d604bd1a",
+        "type": "file",
+        "data": {
+            "label": "skeleton.tsx",
+            "name": "skeleton"
+        },
+        "position": {
+            "x": 3692,
+            "y": 1906
+        }
+    },
+    {
+        "id": "node_83_sonner.tsx_80e7225b-b1f2-4b00-8cd7-d90cd916abde",
+        "type": "file",
+        "data": {
+            "label": "sonner.tsx",
+            "name": "sonner"
+        },
+        "position": {
+            "x": 3382,
+            "y": 2797
+        }
+    },
+    {
+        "id": "node_84_switch.tsx_ae672531-358a-4df9-8875-a498bbcc0af4",
+        "type": "file",
+        "data": {
+            "label": "switch.tsx",
+            "name": "switch"
+        },
+        "position": {
+            "x": 3692,
+            "y": 2868
+        }
+    },
+    {
+        "id": "node_85_table.tsx_65d5695c-84b7-4d36-9c18-c1758010d3a7",
+        "type": "file",
+        "data": {
+            "label": "table.tsx",
+            "name": "table"
+        },
+        "position": {
+            "x": 3692,
+            "y": 2076
+        }
+    },
+    {
+        "id": "node_86_tabs.tsx_4310bd58-ce76-4935-a980-ac5a5337917d",
+        "type": "file",
+        "data": {
+            "label": "tabs.tsx",
+            "name": "tabs"
+        },
+        "position": {
+            "x": 4292,
+            "y": 3548
+        }
+    },
+    {
+        "id": "node_87_textarea.tsx_5835d42f-3e5f-4001-8ba3-c398efc11a7e",
+        "type": "file",
+        "data": {
+            "label": "textarea.tsx",
+            "name": "textarea"
+        },
+        "position": {
+            "x": 3992,
+            "y": 703
+        }
+    },
+    {
+        "id": "node_88_tooltip.tsx_9f1905d3-477c-4ab6-ae3c-de5c2841f7ff",
+        "type": "file",
+        "data": {
+            "label": "tooltip.tsx",
+            "name": "tooltip"
+        },
+        "position": {
+            "x": 3992,
+            "y": 5261
+        }
+    },
+    {
+        "id": "node_89_theme-provider.tsx_cb510f36-fe7b-463d-b018-3a2efa9d90a3",
+        "type": "file",
+        "data": {
+            "label": "theme-provider.tsx",
+            "name": "theme-provider"
+        },
+        "position": {
+            "x": 4292,
+            "y": 2868
+        }
+    },
+    {
+        "id": "node_90_spinner.tsx_f998ddc8-85c5-4c8d-85c7-5a275c1c4210",
+        "type": "file",
+        "data": {
+            "label": "spinner.tsx",
+            "name": "spinner"
+        },
+        "position": {
+            "x": 3692,
+            "y": 1155
+        }
+    },
+    {
+        "id": "node_91_header.tsx_5297beaf-8182-45c4-98c2-171f7b6554e8",
+        "type": "file",
+        "data": {
+            "label": "header.tsx",
+            "name": "header"
+        },
+        "position": {
+            "x": 4892,
+            "y": 1495
+        }
+    },
+    {
+        "id": "node_92_main.tsx_764bd5fa-9204-4ac1-b719-08bcb78c01b0",
+        "type": "file",
+        "data": {
+            "label": "main.tsx",
+            "name": "main"
+        },
+        "position": {
+            "x": 5192,
+            "y": 5742
+        }
+    },
+    {
+        "id": "node_93_mobile-sidebar.tsx_b6ff6a1a-7e19-4134-ab11-15281778171b",
+        "type": "file",
+        "data": {
+            "label": "mobile-sidebar.tsx",
+            "name": "mobile-sidebar"
+        },
+        "position": {
+            "x": 4592,
+            "y": 1495
+        }
+    },
+    {
+        "id": "node_94_sidebar.tsx_509c2345-2e20-46d9-b106-89b8e7c0b875",
+        "type": "file",
+        "data": {
+            "label": "sidebar.tsx",
+            "name": "sidebar"
+        },
+        "position": {
+            "x": 4292,
+            "y": 2516
+        }
+    },
+    {
+        "id": "node_95_github.tsx_cc94165d-de99-450a-8393-150e86de6cf3",
+        "type": "file",
+        "data": {
+            "label": "github.tsx",
+            "name": "github"
+        },
+        "position": {
+            "x": 4292,
+            "y": 1424
+        }
+    },
+    {
+        "id": "node_96_site-logo.tsx_573a9e9e-626c-4d93-9c71-45d0f85aab9e",
+        "type": "file",
+        "data": {
+            "label": "site-logo.tsx",
+            "name": "site-logo"
+        },
+        "position": {
+            "x": 4592,
+            "y": 1354
+        }
+    },
+    {
+        "id": "node_97_x.tsx_c8684cbd-75ac-4860-a52f-80ca519c63c3",
+        "type": "file",
+        "data": {
+            "label": "x.tsx",
+            "name": "x"
+        },
+        "position": {
+            "x": 1362,
+            "y": 12
+        }
+    },
+    {
+        "id": "node_98_icon.tsx_b8b3a995-041b-49c1-8951-1bc0a6f48f00",
+        "type": "file",
+        "data": {
+            "label": "icon.tsx",
+            "name": "icon"
+        },
+        "position": {
+            "x": 1632,
+            "y": 12
+        }
+    },
+    {
+        "id": "node_99_layout.tsx_0c308d1c-c0ab-483d-bbf8-fdb91e980be5",
+        "type": "file",
+        "data": {
+            "label": "layout.tsx",
+            "name": "layout"
+        },
+        "position": {
+            "x": 4592,
+            "y": 2868
+        }
+    },
+    {
+        "id": "node_100_page.tsx_0d55aea2-78cb-49aa-97f7-40c476588918",
+        "type": "file",
+        "data": {
+            "label": "page.tsx",
+            "name": "page"
+        },
+        "position": {
+            "x": 1902,
+            "y": 22
+        }
+    }
+]
