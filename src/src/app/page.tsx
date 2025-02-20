@@ -14,29 +14,29 @@ import {
   Panel,
   MiniMap,
   Background,
+  Connection,
+  reconnectEdge,
 } from "@xyflow/react";
 import { useAtomValue } from "jotai";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 
 import { Header } from "@/components/layout/header";
 import { Main } from "@/components/layout/main";
 import { ControlPanel } from "@/components/lib/controls/control-panel";
+import { FileNode } from "@/components/lib/node/file-node";
 import { SidebarProvider } from "@/components/ui/sidebar";
+import { initialEdges } from "@/constant/initial/edge";
+import { initialNodes } from "@/constant/initial/node";
 import { UploadButton } from "@/features/upload/components/upload-button";
+import { UploadForm } from "@/features/upload/components/upload-form";
 import { useIsTouchDevice } from "@/hooks/use-is-touch-device";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { themeAtom } from "@/stores/theme";
 
-const initialNodes: Node[] = [
-  { id: "1", data: { label: "Node 1" }, position: { x: 5, y: 5 } },
-  { id: "2", data: { label: "Node 2" }, position: { x: 5, y: 100 } },
-];
-
-const initialEdges: Edge[] = [{ id: "e1-2", source: "1", target: "2" }];
-
 export default function Flow() {
   const [nodes, setNodes] = useState<Node[]>(initialNodes);
   const [edges, setEdges] = useState<Edge[]>(initialEdges);
+  const edgeReconnectSuccessful = useRef(true);
   const theme = useAtomValue(themeAtom);
   const isTouchDevice = useIsTouchDevice();
   const isMobile = useIsMobile();
@@ -54,6 +54,27 @@ export default function Flow() {
     [setEdges],
   );
 
+  const onReconnectStart = () => {
+    edgeReconnectSuccessful.current = false;
+  };
+
+  const onReconnect = (oldEdge: Edge, newConnection: Connection) => {
+    edgeReconnectSuccessful.current = true;
+    setEdges((edge) => reconnectEdge(oldEdge, newConnection, edge));
+  };
+
+  const onReconnectEnd = (_: MouseEvent | TouchEvent, edge: Edge) => {
+    if (!edgeReconnectSuccessful.current) {
+      setEdges((eds) => eds.filter((e) => e.id !== edge.id));
+    }
+
+    edgeReconnectSuccessful.current = true;
+  };
+
+  const nodeTypes = {
+    file: FileNode,
+  };
+
   return (
     <SidebarProvider className="w-full h-full">
       <ReactFlowProvider>
@@ -62,14 +83,13 @@ export default function Flow() {
           <ReactFlow
             nodes={nodes}
             edges={edges}
-            // nodeTypes
+            nodeTypes={nodeTypes}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
-            // onReconnectStart={onReconnectStart}
-            // onReconnect={onReconnect}
-            // onReconnectEnd={onReconnectEnd}
-            // isValidConnection={isValidConnection}
+            onReconnectStart={onReconnectStart}
+            onReconnect={onReconnect}
+            onReconnectEnd={onReconnectEnd}
             snapToGrid={true}
             snapGrid={[25, 25]}
             fitView
@@ -96,6 +116,7 @@ export default function Flow() {
             <Background />
           </ReactFlow>
         </Main>
+        <UploadForm />
       </ReactFlowProvider>
     </SidebarProvider>
   );

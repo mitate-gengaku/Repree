@@ -5,7 +5,7 @@ import {
   getViewportForBounds,
   useReactFlow,
 } from "@xyflow/react";
-import { toPng, toSvg } from "html-to-image";
+import { toSvg } from "html-to-image";
 
 import { downloadImage } from "@/lib/download-image";
 
@@ -32,7 +32,7 @@ export const useDownload = () => {
     );
 
     toSvg(element, {
-      backgroundColor: '#1a365d',
+      backgroundColor: "#1a365d",
       width: imageWidth,
       height: imageHeight,
       style: {

@@ -1,3 +1,4 @@
+import { useSetAtom } from "jotai";
 import { CameraIcon, UploadIcon } from "lucide-react";
 
 import { GithubLink } from "@/components/layout/github-link";
@@ -12,14 +13,14 @@ import {
   SidebarSeparator,
 } from "@/components/ui/sidebar";
 import { ThemeSwitch } from "@/features/theme/components/theme-switch";
-import { useIsMobile } from "@/hooks/use-mobile";
 import { useDownload } from "@/hooks/use-download";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { openDialogAtom } from "@/stores/dialog";
 
 export function MobileSidebar() {
+  const setOpen = useSetAtom(openDialogAtom);
   const isMobile = useIsMobile();
-  const {
-    onDownloadImage
-  } = useDownload()
+  const { onDownloadImage } = useDownload();
 
   return (
     <Sidebar>
@@ -31,7 +32,7 @@ export function MobileSidebar() {
         <SidebarSeparator />
         <SidebarGroup>
           <SidebarGroupContent>
-            <SidebarMenuButton>
+            <SidebarMenuButton onClick={() => setOpen((open) => !open)}>
               <UploadIcon />
               Upload
             </SidebarMenuButton>

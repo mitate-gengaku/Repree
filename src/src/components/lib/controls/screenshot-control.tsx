@@ -9,9 +9,7 @@ import {
 import { useDownload } from "@/hooks/use-download";
 
 export const ScreenshotControl = () => {
-  const {
-    onDownloadImage,
-  } = useDownload();
+  const { onDownloadImage } = useDownload();
 
   return (
     <Tooltip>
