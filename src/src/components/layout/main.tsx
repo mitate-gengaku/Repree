@@ -16,6 +16,7 @@ import {
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { TypeScriptIcon } from "@/components/icons/typescript";
 
 interface Props {
   children: ReactNode;
@@ -45,22 +46,35 @@ export const Main = ({ children }: Props) => {
                   <Accordion type="single" collapsible>
                     <AccordionItem value="a">
                       <AccordionTrigger className="py-2 hover:no-underline outline-none">
-                        a
+                        <div className="flex items-center gap-1">
+                          <TypeScriptIcon className="size-4 fill-[#3178C6] !rotate-0" />
+                          step-data.ts
+                        </div>
                       </AccordionTrigger>
                       <AccordionContent className="flex flex-col gap-2">
                         <div className="flex flex-col gap-1">
                           <h4 className="text-[10px] text-muted-foreground">
-                            name
+                            directory
                           </h4>
                           <div className="px-[2px]">
-                            <Input className="h-7 px-2 text-xs rounded-sm" />
+                            <p className="leading-[1] text-sm">components</p>
                           </div>
                         </div>
                         <div className="flex flex-col gap-1">
                           <h4 className="text-[10px] text-muted-foreground">
-                            on
+                            path
                           </h4>
-                          <div className="px-[2px]"></div>
+                          <div className="px-[2px]">
+                            <p className="leading-[1] text-sm">src/components/libs/flow</p>
+                          </div>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <h4 className="text-[10px] text-muted-foreground">
+                            size
+                          </h4>
+                          <div className="px-[2px]">
+                            <p className="leading-[1] text-sm">45MB</p>
+                          </div>
                         </div>
                       </AccordionContent>
                     </AccordionItem>
