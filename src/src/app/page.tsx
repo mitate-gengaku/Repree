@@ -16,9 +16,10 @@ import {
   Connection,
   reconnectEdge,
   NodeMouseHandler,
+  useReactFlow,
 } from "@xyflow/react";
-import { useAtom, useAtomValue } from "jotai";
-import { useState, useCallback, useRef } from "react";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { useCallback, useRef } from "react";
 
 import { Header } from "@/components/layout/header";
 import { Main } from "@/components/layout/main";
@@ -31,6 +32,7 @@ import { useIsTouchDevice } from "@/hooks/use-is-touch-device";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { edgesAtom } from "@/stores/edge";
 import { nodesAtom } from "@/stores/node";
+import { selectNodeAtom } from "@/stores/select-node";
 import { themeAtom } from "@/stores/theme";
 
 /**
@@ -265,13 +267,14 @@ function getTargetChainEdges(allTargets: Node[], edges: Edge[]): Edge[] {
   );
 }
 export default function Flow() {
+  const setSelect = useSetAtom(selectNodeAtom);
+  const edgeReconnectSuccessful = useRef(true);
   const [nodes, setNodes] = useAtom(nodesAtom);
   const [edges, setEdges] = useAtom(edgesAtom);
-  const [select, setSelect] = useState<Node | null>(null);
-  const edgeReconnectSuccessful = useRef(true);
   const theme = useAtomValue(themeAtom);
   const isTouchDevice = useIsTouchDevice();
   const isMobile = useIsMobile();
+  const { setCenter } = useReactFlow();
 
   const onNodesChange: OnNodesChange = useCallback(
     (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
@@ -303,11 +306,22 @@ export default function Flow() {
     edgeReconnectSuccessful.current = true;
   };
 
-  const nodeTypes = {
-    file: FileNode,
-  };
+  const focusNode = useCallback(
+    (nodeId: string) => {
+      const node = nodes.find((n) => n.id === nodeId);
+      if (node) {
+        setCenter(node.position.x + 120, node.position.y + 90, {
+          zoom: 1,
+          duration: 800,
+        });
+      }
+    },
+    [nodes, setCenter],
+  );
 
-  const onNodeMouseEnter: NodeMouseHandler<Node> = useCallback((_, node) => {
+  const onNodeClick: NodeMouseHandler<Node> = useCallback((_, node) => {
+    setSelect(true);
+    focusNode(node.id);
     setNodes((nodes) => {
       const { allTargets } = exploreAllTargets(nodes, edges, node.id);
 
@@ -324,13 +338,16 @@ export default function Flow() {
           };
         },
       );
-      const targetEdges = Array.from(
-        new Map(
-          [...edges, ...relatedEdges].map((edge) => [edge.id, edge]),
-        ).values(),
-      );
 
-      setEdges(targetEdges);
+      setEdges((edges) => {
+        return [
+          ...Array.from(
+            new Map(
+              [...edges, ...relatedEdges].map((edge) => [edge.id, edge]),
+            ).values(),
+          ),
+        ];
+      });
 
       const targetNodes = allTargets.map((node) => {
         return {
@@ -350,7 +367,7 @@ export default function Flow() {
     });
   }, []);
 
-  const onNodeMouseLeave = useCallback(() => {
+  const onPaneClick = useCallback(() => {
     setEdges((edges) => {
       return edges.map((edge) => {
         return {
@@ -372,11 +389,16 @@ export default function Flow() {
         };
       });
     });
+    setSelect(false);
   }, []);
+
+  const nodeTypes = {
+    file: FileNode,
+  };
 
   return (
     <SidebarProvider className="w-full h-full">
-      <Header>a</Header>
+      <Header />
       <Main>
         <ReactFlow
           nodes={nodes}
@@ -384,8 +406,8 @@ export default function Flow() {
           nodeTypes={nodeTypes}
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
-          onNodeMouseEnter={onNodeMouseEnter}
-          onNodeMouseLeave={onNodeMouseLeave}
+          onNodeClick={onNodeClick}
+          onPaneClick={onPaneClick}
           onConnect={onConnect}
           onReconnectStart={onReconnectStart}
           onReconnect={onReconnect}
