@@ -34,6 +34,7 @@ import { edgesAtom } from "@/stores/edge";
 import { nodesAtom } from "@/stores/node";
 import { selectNodeAtom } from "@/stores/select-node";
 import { themeAtom } from "@/stores/theme";
+import { HighlightEdge } from "@/components/lib/edge/highlight";
 
 /**
  * 選択したノードから始めてtargetを再帰的に探索する関数
@@ -329,12 +330,7 @@ export default function Flow() {
         (edge) => {
           return {
             ...edge,
-            animated: true,
-            style: {
-              ...edge.style,
-              boxShadow: "0 0 20px 0 rgba(56,189,248,.4)",
-              stroke: "#0284c7",
-            },
+            type: "highlight"
           };
         },
       );
@@ -372,8 +368,7 @@ export default function Flow() {
       return edges.map((edge) => {
         return {
           ...edge,
-          animated: false,
-          style: undefined,
+          type: "default"
         };
       });
     });
@@ -396,6 +391,10 @@ export default function Flow() {
     file: FileNode,
   };
 
+  const edgeTypes = {
+    highlight: HighlightEdge
+  }
+
   return (
     <SidebarProvider className="w-full h-full">
       <Header />
@@ -404,20 +403,19 @@ export default function Flow() {
           nodes={nodes}
           edges={edges}
           nodeTypes={nodeTypes}
+          edgeTypes={edgeTypes}
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
           onNodeClick={onNodeClick}
           onPaneClick={onPaneClick}
           onConnect={onConnect}
-          onReconnectStart={onReconnectStart}
-          onReconnect={onReconnect}
-          onReconnectEnd={onReconnectEnd}
           snapToGrid={true}
           snapGrid={[25, 25]}
           fitView
           fitViewOptions={{
             duration: 1000,
           }}
+          minZoom={0.1}
           panOnScroll
           selectionOnDrag={!isTouchDevice}
           panOnDrag={[1, 2]}
