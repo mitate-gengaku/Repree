@@ -29,14 +29,14 @@ export function HighlightEdge({
         />
         {[...Array(8)].map((_, i) => (
           <rect
-            key={`particle-${i}`}
+            key={`highlight-rect-${i}`}
             width="5"
             height="3"
             y="-1.5"
             className='fill-sky-400'
           >
             <animateMotion
-              begin={`${-i}s`}
+              begin={`${-i*2}s`}
               dur={`8s`}
               repeatCount="indefinite"
               rotate="auto"
