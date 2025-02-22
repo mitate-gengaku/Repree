@@ -14,7 +14,6 @@ import { cn } from "@/lib/utils";
 import { openDialogAtom } from "@/stores/dialog";
 import { DragEvent, FormEvent, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { uploadFolder } from "@/features/upload/actions/upload-folder"
 
 export const UploadForm = () => {
   const [isActive, setActive] = useState<boolean>(false);
@@ -22,19 +21,27 @@ export const UploadForm = () => {
   const inputRef = useRef<HTMLInputElement | null>(null)
   const [open, setOpen] = useAtom(openDialogAtom);
   
-  const handleSubmit = async () => {
-    const formData = new FormData();
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
+    const formData = new FormData();
     const files = inputRef.current?.files;
 
     if (files) {
-      for (const file of files) {
-        
-        formData.append("file", file)
+      for(const file of files) {
+        formData.append("files[]", file, file.webkitRelativePath);
       }
-      const response = await uploadFolder(formData)
 
-      console.log(response)
+      try {
+        const result = await fetch("/api/analyze", {
+          method: "POST",
+          body: formData
+        });
+  
+        console.log(await result.json())
+      } catch (e) {
+        console.error(e)
+      }
     }
   }
 
@@ -47,7 +54,7 @@ export const UploadForm = () => {
             Please upload or select the folder you want to analyze
           </DialogDescription>
         </DialogHeader>
-        <form action={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <Label
             htmlFor="file"
             className={cn(
