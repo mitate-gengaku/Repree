@@ -1,6 +1,4 @@
-"use client"
-import "@xyflow/react/dist/style.css"
-import { useState, useCallback } from 'react';
+"use client";
 import {
   ReactFlow,
   addEdge,
@@ -8,62 +6,103 @@ import {
   applyEdgeChanges,
   type Node,
   type Edge,
-  type FitViewOptions,
   type OnConnect,
   type OnNodesChange,
   type OnEdgesChange,
-  type OnNodeDrag,
-  type NodeTypes,
-  type DefaultEdgeOptions,
-} from '@xyflow/react';
-import ELK, { ElkExtendedEdge } from 'elkjs/lib/elk.bundled.js';
+  SelectionMode,
+  Panel,
+  MiniMap,
+  Background,
+  NodeMouseHandler,
+  useReactFlow,
+} from "@xyflow/react";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { useCallback } from "react";
 
-const elk = new ELK();
-const elkLayout = () => {
-  const nodesForElk = initialNodes.map((node) => {
-    return {
-      id: node.id,
-      width: node.type === "rectangleNode" ? 70 : 50,
-      height: node.type === "rhombusNode" ? 70 : 50
-    };
-  });
+import { Header } from "@/components/layout/header";
+import { Main } from "@/components/layout/main";
+import { ControlPanel } from "@/components/lib/controls/control-panel";
+import { HighlightEdge } from "@/components/lib/edge/highlight";
+import { FileNode } from "@/components/lib/node/file-node";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { UploadButton } from "@/features/upload/components/upload-button";
+import { UploadForm } from "@/features/upload/components/upload-form";
+import { useIsTouchDevice } from "@/hooks/use-is-touch-device";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { edgesAtom } from "@/stores/edge";
+import { nodesAtom } from "@/stores/node";
+import { selectNodeAtom } from "@/stores/select-node";
+import { themeAtom } from "@/stores/theme";
 
-  const graph = {
-    id: "root",
-    layoutOptions: {
-      "elk.algorithm": "layered",
-      "elk.direction": "DOWN",
-      "nodePlacement.strategy": "SIMPLE"
-    },
-    children: nodesForElk,
-    edges: initialEdges as unknown as ElkExtendedEdge[]
+function exploreTargetsRecursively(
+  startNodeId: string,
+  nodes: Node[],
+  edges: Edge[],
+): Node[] {
+  const exploredNodes: Node[] = [];
+
+  const visitedNodeIds = new Set<string>();
+
+  function exploreTarget(currentNodeId: string) {
+    if (visitedNodeIds.has(currentNodeId)) {
+      return;
+    }
+
+    visitedNodeIds.add(currentNodeId);
+
+    const currentNode = nodes.find((node) => node.id === currentNodeId);
+    if (!currentNode) {
+      return;
+    }
+
+    exploredNodes.push(currentNode);
+
+    const outgoingEdges = edges.filter((edge) => edge.source === currentNodeId);
+
+    if (outgoingEdges.length === 0) {
+      return;
+    }
+
+    for (const edge of outgoingEdges) {
+      if (edge.target) {
+        exploreTarget(edge.target);
+      }
+    }
+  }
+
+  exploreTarget(startNodeId);
+
+  return exploredNodes;
+}
+
+function exploreAllTargets(
+  nodes: Node[],
+  edges: Edge[],
+  selectedNodeId: string,
+) {
+  const exploredNodes = exploreTargetsRecursively(selectedNodeId, nodes, edges);
+
+  return {
+    allTargets: exploredNodes,
   };
-  return elk.layout(graph);
-};
- 
-const initialNodes: Node[] = [
-  { id: '1', data: { label: 'Node 1' }, position: { x: 5, y: 5 } },
-  { id: '2', data: { label: 'Node 2' }, position: { x: 5, y: 100 } },
-];
- 
-const initialEdges: Edge[] = [{ id: 'e1-2', source: '1', target: '2' }];
- 
-const fitViewOptions: FitViewOptions = {
-  padding: 0.2,
-};
- 
-const defaultEdgeOptions: DefaultEdgeOptions = {
-  animated: true,
-};
- 
-const onNodeDrag: OnNodeDrag = (_, node) => {
-  console.log('drag event', node.data);
-};
- 
+}
+
+function getTargetChainEdges(allTargets: Node[], edges: Edge[]): Edge[] {
+  const targetNodeIds = new Set(allTargets.map((node) => node.id));
+
+  return edges.filter(
+    (edge) => targetNodeIds.has(edge.source) && targetNodeIds.has(edge.target),
+  );
+}
 export default function Flow() {
-  const [nodes, setNodes] = useState<Node[]>(initialNodes);
-  const [edges, setEdges] = useState<Edge[]>(initialEdges);
- 
+  const setSelect = useSetAtom(selectNodeAtom);
+  const [nodes, setNodes] = useAtom(nodesAtom);
+  const [edges, setEdges] = useAtom(edgesAtom);
+  const theme = useAtomValue(themeAtom);
+  const isTouchDevice = useIsTouchDevice();
+  const isMobile = useIsMobile();
+  const { setCenter } = useReactFlow();
+
   const onNodesChange: OnNodesChange = useCallback(
     (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
     [setNodes],
@@ -76,18 +115,140 @@ export default function Flow() {
     (connection) => setEdges((eds) => addEdge(connection, eds)),
     [setEdges],
   );
- 
+
+  const focusNode = useCallback(
+    (nodeId: string) => {
+      const node = nodes.find((n) => n.id === nodeId);
+      if (node) {
+        setCenter(node.position.x + 120, node.position.y + 90, {
+          zoom: 1,
+          duration: 800,
+        });
+      }
+    },
+    [nodes, setCenter],
+  );
+
+  const onNodeClick: NodeMouseHandler<Node> = useCallback(
+    (_, node) => {
+      setSelect(true);
+      focusNode(node.id);
+      setNodes((nodes) => {
+        const { allTargets } = exploreAllTargets(nodes, edges, node.id);
+
+        const relatedEdges = [...getTargetChainEdges(allTargets, edges)].map(
+          (edge) => {
+            return {
+              ...edge,
+              type: "highlight",
+            };
+          },
+        );
+
+        setEdges((edges) => {
+          return [
+            ...Array.from(
+              new Map(
+                [...edges, ...relatedEdges].map((edge) => [edge.id, edge]),
+              ).values(),
+            ),
+          ];
+        });
+
+        const targetNodes = allTargets.map((node) => {
+          return {
+            ...node,
+            data: {
+              ...node.data,
+              highlight: true,
+            },
+          };
+        });
+
+        return Array.from(
+          new Map(
+            [...nodes, ...targetNodes].map((node) => [node.id, node]),
+          ).values(),
+        );
+      });
+    },
+    [edges, focusNode, setEdges, setNodes, setSelect],
+  );
+
+  const onPaneClick = useCallback(() => {
+    setEdges((edges) => {
+      return edges.map((edge) => {
+        return {
+          ...edge,
+          type: "default",
+        };
+      });
+    });
+    setNodes((nodes) => {
+      return nodes.map((node) => {
+        return {
+          ...node,
+          selected: false,
+          data: {
+            ...node.data,
+            highlight: false,
+          },
+        };
+      });
+    });
+    setSelect(false);
+  }, [setEdges, setNodes, setSelect]);
+
+  const nodeTypes = {
+    file: FileNode,
+  };
+
+  const edgeTypes = {
+    highlight: HighlightEdge,
+  };
+
   return (
-    <ReactFlow
-      nodes={nodes}
-      edges={edges}
-      onNodesChange={onNodesChange}
-      onEdgesChange={onEdgesChange}
-      onConnect={onConnect}
-      onNodeDrag={onNodeDrag}
-      fitView
-      fitViewOptions={fitViewOptions}
-      defaultEdgeOptions={defaultEdgeOptions}
-    />
+    <SidebarProvider className="w-full h-full">
+      <Header />
+      <Main>
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          nodeTypes={nodeTypes}
+          edgeTypes={edgeTypes}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          onNodeClick={onNodeClick}
+          onPaneClick={onPaneClick}
+          onConnect={onConnect}
+          snapToGrid={true}
+          snapGrid={[25, 25]}
+          fitView
+          fitViewOptions={{
+            duration: 1000,
+          }}
+          minZoom={0.1}
+          panOnScroll
+          selectionOnDrag={!isTouchDevice}
+          panOnDrag={[1, 2]}
+          selectionMode={SelectionMode.Partial}
+          colorMode={theme}
+        >
+          {!isMobile && (
+            <Panel position="top-right">
+              <UploadButton />
+            </Panel>
+          )}
+          <Panel position="bottom-left" className="bottom-4">
+            <ControlPanel />
+          </Panel>
+          <Panel position="bottom-right" className="bottom-4">
+            <MiniMap />
+          </Panel>
+          <Background />
+        </ReactFlow>
+      </Main>
+      <UploadForm />
+    </SidebarProvider>
   );
 }

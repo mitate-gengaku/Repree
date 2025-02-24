@@ -3,13 +3,13 @@ import { useSetAtom } from "jotai";
 import { useTheme as useNextTheme } from "next-themes";
 import { useEffect } from "react";
 
-import { themeAtom } from "@/store/theme";
+import { themeAtom } from "@/stores/theme";
 
 export const useTheme = () => {
   const setTheme = useSetAtom(themeAtom);
   const { theme, setTheme: setNextTheme } = useNextTheme();
 
-  const onCustomTheme = (theme: ColorMode) => {
+  const onHandleTheme = (theme: ColorMode) => {
     setNextTheme(theme);
     setTheme(theme);
   };
@@ -22,6 +22,6 @@ export const useTheme = () => {
 
   return {
     theme,
-    onCustomTheme,
+    onHandleTheme,
   };
 };
