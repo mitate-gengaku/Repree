@@ -17,7 +17,7 @@ import {
   useReactFlow,
 } from "@xyflow/react";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
-import { useCallback} from "react";
+import { useCallback } from "react";
 
 import { Header } from "@/components/layout/header";
 import { Main } from "@/components/layout/main";
@@ -52,7 +52,7 @@ function exploreTargetsRecursively(
 
     const currentNode = nodes.find((node) => node.id === currentNodeId);
     if (!currentNode) {
-      return; 
+      return;
     }
 
     exploredNodes.push(currentNode);

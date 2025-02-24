@@ -11,7 +11,7 @@ export default async function Icon() {
   return new ImageResponse(
     (
       <img
-        src={`https://localhost:3000/depix.png`}
+        src={`https://repree.net/repree.png`}
         alt="icon"
         width={32}
         height={32}
