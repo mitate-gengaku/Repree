@@ -16,22 +16,22 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Depix",
+  title: "Repree",
   description:
     "A ReactFlow based application for visually designing and generating GitHub Actions workflow files. You can easily design workflows by simply connecting nodes, and download the YAML file.",
-  metadataBase: new URL("http://localhost:3000"),
+  metadataBase: new URL("https://repree.net"),
   openGraph: {
-    title: "Depix",
+    title: "Repree",
     description:
       "A ReactFlow based application for visually designing and generating GitHub Actions workflow files. You can easily design workflows by simply connecting nodes, and download the YAML file.",
-    url: "http://localhost:3000",
-    siteName: "Depix",
+    url: "https://repree.net",
+    siteName: "Repree",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: "Depix",
+    title: "Repree",
     description:
       "A ReactFlow based application for visually designing and generating GitHub Actions workflow files. You can easily design workflows by simply connecting nodes, and download the YAML file.",
     creator: "@mitate-gengaku",
