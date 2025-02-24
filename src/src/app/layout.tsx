@@ -18,12 +18,12 @@ const geistSans = Geist({
 export const metadata: Metadata = {
   title: "Repree",
   description:
-    "A ReactFlow based application for visually designing and generating GitHub Actions workflow files. You can easily design workflows by simply connecting nodes, and download the YAML file.",
+    "A React flow based tool that visualizes files and components connected by import/export. It's a useful tool during development activities such as refactoring. You can easily visualize by simply uploading the folder you want to visualize.",
   metadataBase: new URL("https://repree.net"),
   openGraph: {
     title: "Repree",
     description:
-      "A ReactFlow based application for visually designing and generating GitHub Actions workflow files. You can easily design workflows by simply connecting nodes, and download the YAML file.",
+      "A React flow based tool that visualizes files and components connected by import/export. It's a useful tool during development activities such as refactoring. You can easily visualize by simply uploading the folder you want to visualize.",
     url: "https://repree.net",
     siteName: "Repree",
     locale: "en_US",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Repree",
     description:
-      "A ReactFlow based application for visually designing and generating GitHub Actions workflow files. You can easily design workflows by simply connecting nodes, and download the YAML file.",
+      "A React flow based tool that visualizes files and components connected by import/export. It's a useful tool during development activities such as refactoring. You can easily visualize by simply uploading the folder you want to visualize.",
     creator: "@mitate-gengaku",
     creatorId: "1776914915519045632",
   },
