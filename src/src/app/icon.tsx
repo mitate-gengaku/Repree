@@ -11,7 +11,7 @@ export default async function Icon() {
   return new ImageResponse(
     (
       <img
-        src={`https://repree.net/repree.png`}
+        src={`https://repree.vercel.app/repree.png`}
         alt="icon"
         width={32}
         height={32}
