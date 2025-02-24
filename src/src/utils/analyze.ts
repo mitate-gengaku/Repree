@@ -2,13 +2,13 @@
 
 import * as path from "path";
 
+import { Edge } from "@xyflow/react";
+import { Node } from "@xyflow/react";
 import { v4 as uuidv4 } from "uuid";
 
-import { ELKLayoutCalculator } from "@/utils/elk-layout-calculator";
-import { Edge } from "@xyflow/react";
 import { FileAnalysis } from "@/types/file";
 import { Import } from "@/types/import";
-import { Node } from "@xyflow/react";
+import { ELKLayoutCalculator } from "@/utils/elk-layout-calculator";
 
 class ImportExportAnalyzer {
   private nodes: Node[] = [];
@@ -26,14 +26,16 @@ class ImportExportAnalyzer {
     );
   }
 
-  private async readFileContent(file: File): Promise<{content: string, size: number}> {
+  private async readFileContent(
+    file: File,
+  ): Promise<{ content: string; size: number }> {
     const buffer = Buffer.from(await file.arrayBuffer());
-    const fileContent = buffer.toString("utf-8")
+    const fileContent = buffer.toString("utf-8");
 
     return {
       content: fileContent,
       size: file.size,
-    }
+    };
   }
 
   private async analyzeFile(file: File): Promise<FileAnalysis> {
@@ -104,19 +106,19 @@ class ImportExportAnalyzer {
 
     return exports;
   }
-  
+
   private splitFileNameAndPath(value: string) {
     const splitedValue = value.split("/");
 
     const fileName = splitedValue.pop();
-    const dir = splitedValue.slice(-1)[0]
-    const filePath = value.split("/").slice(0, -1).join("/")
-    
+    const dir = splitedValue.slice(-1)[0];
+    const filePath = value.split("/").slice(0, -1).join("/");
+
     return {
-        name: fileName ?? "",
-        dir: dir,
-        path: filePath,
-    }
+      name: fileName ?? "",
+      dir: dir,
+      path: filePath,
+    };
   }
 
   async generateComponentGraph(
@@ -131,11 +133,7 @@ class ImportExportAnalyzer {
     fileAnalyses.forEach((analysis, index) => {
       const id = uuidv4();
       const nodeId = `node_${index}_${analysis.filePath}_${id}`;
-      const {
-        name,
-        dir,
-        path,
-      } = this.splitFileNameAndPath(analysis.filePath)
+      const { name, dir, path } = this.splitFileNameAndPath(analysis.filePath);
 
       const node: Node = {
         id: nodeId,
@@ -168,7 +166,8 @@ class ImportExportAnalyzer {
             path.extname(importItem.source),
           );
           const targetComponent = Array.from(this.componentMap.entries()).find(
-            ([label]) => label.slice(0, label.lastIndexOf('.')) === targetComponentName,
+            ([label]) =>
+              label.slice(0, label.lastIndexOf(".")) === targetComponentName,
           );
 
           if (targetComponent) {

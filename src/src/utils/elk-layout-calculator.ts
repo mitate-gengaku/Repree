@@ -1,10 +1,10 @@
 /* eslint @typescript-eslint/no-unsafe-member-access: 0, @typescript-eslint/no-explicit-any: 0, @typescript-eslint/no-unsafe-assignment: 0, @typescript-eslint/no-unsafe-call:0 */
 
+import { Edge } from "@xyflow/react";
+import { Node } from "@xyflow/react";
 import ELK from "elkjs/lib/elk.bundled.js";
 
-import { Edge } from "@xyflow/react";
 import { ElkGraph } from "@/types/elk-graph";
-import { Node } from "@xyflow/react";
 
 export class ELKLayoutCalculator {
   private nodes: Node[];

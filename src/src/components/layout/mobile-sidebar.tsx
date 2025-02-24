@@ -1,6 +1,7 @@
 import { useAtomValue, useSetAtom } from "jotai";
 import { CameraIcon, UploadIcon } from "lucide-react";
 
+import { JavaScriptIcon } from "@/components/icons/javascript";
 import { TypeScriptIcon } from "@/components/icons/typescript";
 import { GithubLink } from "@/components/layout/github-link";
 import {
@@ -24,10 +25,9 @@ import { useDownload } from "@/hooks/use-download";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { openDialogAtom } from "@/stores/dialog";
 import { nodesAtom } from "@/stores/node";
-import { JavaScriptIcon } from "@/components/icons/javascript";
 
 export function MobileSidebar() {
-  const nodes = useAtomValue(nodesAtom)
+  const nodes = useAtomValue(nodesAtom);
   const setOpen = useSetAtom(openDialogAtom);
   const isMobile = useIsMobile();
   const { onDownloadImage } = useDownload();
@@ -57,11 +57,15 @@ export function MobileSidebar() {
                         directory
                       </h4>
                       <div className="px-[2px]">
-                        <p className="leading-[1] text-sm">{node.data.directory as string}</p>
+                        <p className="leading-[1] text-sm">
+                          {node.data.directory as string}
+                        </p>
                       </div>
                     </div>
                     <div className="flex flex-col gap-1">
-                      <h4 className="text-[10px] text-muted-foreground">path</h4>
+                      <h4 className="text-[10px] text-muted-foreground">
+                        path
+                      </h4>
                       <div className="px-[2px]">
                         <p className="leading-[1] text-sm">
                           {node.data.path as string}
@@ -69,9 +73,14 @@ export function MobileSidebar() {
                       </div>
                     </div>
                     <div className="flex flex-col gap-1">
-                      <h4 className="text-[10px] text-muted-foreground">size</h4>
+                      <h4 className="text-[10px] text-muted-foreground">
+                        size
+                      </h4>
                       <div className="px-[2px]">
-                        <p className="leading-[1] text-sm">{(node.data.size as number / (1024 ** 2)).toFixed(4)}MB</p>
+                        <p className="leading-[1] text-sm">
+                          {((node.data.size as number) / 1024 ** 2).toFixed(4)}
+                          MB
+                        </p>
                       </div>
                     </div>
                   </AccordionContent>

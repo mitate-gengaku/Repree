@@ -2,6 +2,6 @@ export type FileNodeData = {
   label: string;
   directory?: string;
   path?: string;
-  size?: number
+  size?: number;
   highlight?: boolean;
 };

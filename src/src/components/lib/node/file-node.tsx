@@ -1,10 +1,10 @@
 import { Handle, Node, NodeProps, Position } from "@xyflow/react";
 import { memo } from "react";
 
+import { JavaScriptIcon } from "@/components/icons/javascript";
 import { TypeScriptIcon } from "@/components/icons/typescript";
 import { cn } from "@/lib/utils";
 import { FileNodeData } from "@/types/file-node-data";
-import { JavaScriptIcon } from "@/components/icons/javascript";
 
 export const FileNode = memo(
   ({ data, selected }: NodeProps<Node<FileNodeData>>) => {
@@ -34,15 +34,15 @@ export const FileNode = memo(
           {data.path && (
             <div className="px-3 text-[10px]">
               <h3>path: </h3>
-              <p className="leading-[1] text-gray-500">
-                {data.path}
-              </p>
+              <p className="leading-[1] text-gray-500">{data.path}</p>
             </div>
           )}
           {data.size && (
             <div className="px-3 text-[10px]">
               <h3>size: </h3>
-              <p className="leading-[1] text-gray-500">{(data.size / (1024 ** 2)).toFixed(4)}MB</p>
+              <p className="leading-[1] text-gray-500">
+                {(data.size / 1024 ** 2).toFixed(4)}MB
+              </p>
             </div>
           )}
         </div>
