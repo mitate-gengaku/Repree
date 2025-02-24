@@ -2,6 +2,7 @@ import { Controls } from "@xyflow/react";
 
 import { FitViewControl } from "@/components/lib/controls/fit-view-control";
 import { ScreenshotControl } from "@/components/lib/controls/screenshot-control";
+import { ShowSelectionNodeControl } from "@/components/lib/controls/show-selection-node-control";
 import { ZoomInControl } from "@/components/lib/controls/zoom-in-control";
 import { ZoomLevelControl } from "@/components/lib/controls/zoom-level-control";
 import { ZoomOutControl } from "@/components/lib/controls/zoom-out-control";
@@ -23,6 +24,7 @@ export const ControlPanel = () => {
           <ZoomOutControl />
           <FitViewControl />
           <ScreenshotControl />
+          <ShowSelectionNodeControl />
         </div>
       </TooltipProvider>
     </Controls>

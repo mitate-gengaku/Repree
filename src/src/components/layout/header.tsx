@@ -1,7 +1,5 @@
 "use client";
 
-import { ReactNode } from "react";
-
 import { SiteLogo } from "@/components/icons/site-logo";
 import { GithubLink } from "@/components/layout/github-link";
 import { MobileSidebar } from "@/components/layout/mobile-sidebar";
@@ -10,11 +8,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 import { ToggleThemeButton } from "@/features/theme/components/toggle-button";
 import { useIsMobile } from "@/hooks/use-mobile";
 
-interface Props {
-  children?: ReactNode;
-}
-
-export const Header = ({ children }: Props) => {
+export const Header = () => {
   const isMobile = useIsMobile();
 
   return (
