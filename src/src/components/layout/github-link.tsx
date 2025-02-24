@@ -8,7 +8,7 @@ interface Props {
 
 export const GithubLink = ({ isMobile = false }: Props) => (
   <Link
-    href={"https://github.com/mitate-gengaku/Depix"}
+    href={"https://github.com/mitate-gengaku/Repree"}
     className="w-full h-full flex md:justify-center items-center gap-2"
   >
     <GithubLogoIcon />
