@@ -4,6 +4,7 @@ import { memo } from "react";
 import { TypeScriptIcon } from "@/components/icons/typescript";
 import { cn } from "@/lib/utils";
 import { FileNodeData } from "@/types/file-node-data";
+import { JavaScriptIcon } from "@/components/icons/javascript";
 
 export const FileNode = memo(
   ({ data, selected }: NodeProps<Node<FileNodeData>>) => {
@@ -17,23 +18,33 @@ export const FileNode = memo(
           )}
         >
           <div className="flex items-center gap-2 py-2 bg-slate-100 dark:bg-slate-900 px-3 rounded-tr rounded-tl">
-            <TypeScriptIcon className="size-4 fill-[#3178C6]" />
+            {/\.(js|jsx)$/.test(data.label as string) ? (
+              <JavaScriptIcon className="size-4 fill-[#F7DF1E]" />
+            ) : (
+              <TypeScriptIcon className="size-4 fill-[#3178C6]" />
+            )}
             {data.label}
           </div>
-          <div className="px-3 text-[10px]">
-            <h3>directory: </h3>
-            <p className="leading-[1] text-gray-500">components</p>
-          </div>
-          <div className="px-3 text-[10px]">
-            <h3>path: </h3>
-            <p className="leading-[1] text-gray-500">
-              src/components/libs/flow
-            </p>
-          </div>
-          <div className="px-3 text-[10px]">
-            <h3>size: </h3>
-            <p className="leading-[1] text-gray-500">45MB</p>
-          </div>
+          {data.directory && (
+            <div className="px-3 text-[10px]">
+              <h3>directory: </h3>
+              <p className="leading-[1] text-gray-500">{data.directory}</p>
+            </div>
+          )}
+          {data.path && (
+            <div className="px-3 text-[10px]">
+              <h3>path: </h3>
+              <p className="leading-[1] text-gray-500">
+                {data.path}
+              </p>
+            </div>
+          )}
+          {data.size && (
+            <div className="px-3 text-[10px]">
+              <h3>size: </h3>
+              <p className="leading-[1] text-gray-500">{(data.size / (1024 ** 2)).toFixed(4)}MB</p>
+            </div>
+          )}
         </div>
         <Handle
           type="target"

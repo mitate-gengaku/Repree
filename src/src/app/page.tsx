@@ -361,7 +361,7 @@ export default function Flow() {
         ).values(),
       );
     });
-  }, []);
+  }, [nodes]);
 
   const onPaneClick = useCallback(() => {
     setEdges((edges) => {

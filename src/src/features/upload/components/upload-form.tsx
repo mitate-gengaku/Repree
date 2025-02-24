@@ -1,4 +1,4 @@
-import { useAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import { CloudUploadIcon, FolderIcon } from "lucide-react";
 
 import { Spinner } from "@/components/loading/spinner";
@@ -14,16 +14,23 @@ import { cn } from "@/lib/utils";
 import { openDialogAtom } from "@/stores/dialog";
 import { DragEvent, FormEvent, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { fetchFolderAnalyze } from "@/service/fetch-folder-analyze";
+import { nodesAtom } from "@/stores/node";
+import { useFitView } from "@/hooks/use-fit-view";
+import { useReactFlow } from "@xyflow/react";
+import { edgesAtom } from "@/stores/edge";
 
 export const UploadForm = () => {
-  const [isActive, setActive] = useState<boolean>(false);
-  const [files, setFiles] = useState<FileList>()
+  const [isLoading, setLoading] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement | null>(null)
   const [open, setOpen] = useAtom(openDialogAtom);
+  const setNodes = useSetAtom(nodesAtom)
+  const setEdges = useSetAtom(edgesAtom);
   
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    setLoading(true)
     const formData = new FormData();
     const files = inputRef.current?.files;
 
@@ -33,14 +40,23 @@ export const UploadForm = () => {
       }
 
       try {
-        const result = await fetch("/api/analyze", {
-          method: "POST",
-          body: formData
-        });
-  
-        console.log(await result.json())
+        const response = await fetchFolderAnalyze(
+          "/api/analyze",
+          formData
+        )
+
+        setNodes(response.nodes)
+        setEdges(response.edges)
+
+        console.log(response.nodes)
+        console.log(response.edges)
+        
+        setOpen(false);
+        setLoading(false)
       } catch (e) {
         console.error(e)
+        setOpen(false);
+        setLoading(false)
       }
     }
   }
@@ -58,30 +74,22 @@ export const UploadForm = () => {
           <Label
             htmlFor="file"
             className={cn(
-              "mb-4 flex h-28 w-full cursor-pointer flex-col items-center justify-center rounded-md border-2 border-dashed border-gray-300 bg-card transition-all hover:bg-gray-100 dark:border-sky-600 dark:bg-sky-700 dark:hover:border-sky-500 dark:hover:bg-sky-600",
-              isActive &&
-                "border-sky-600 bg-sky-100 dark:border-sky-500 dark:bg-sky-600",
+              "mb-4 flex h-28 w-full cursor-pointer flex-col items-center justify-center rounded-md border-2 border-dashed border-gray-300 bg-card transition-all hover:bg-gray-100 dark:border-sky-600 dark:bg-sky-700 dark:hover:border-sky-500 dark:hover:bg-sky-600"
             )}
           >
             <div className="flex flex-col items-center justify-center pb-6 pt-5">
-              {isActive ? (
-                <Spinner className="text-sky-600" />
-              ) : (
-                <>
-                  <FolderIcon
-                    className={cn(
-                      "mb-4 size-8 text-gray-500 dark:text-gray-400 xl:size-12",
-                    )}
-                  />
-                  <p
-                    className={cn(
-                      "text-sm font-medium leading-none text-gray-500 dark:text-gray-400",
-                    )}
-                    > 
-                    Choose Folder
-                  </p>
-                </>
-              )}
+              <FolderIcon
+                className={cn(
+                  "mb-4 size-8 text-gray-500 dark:text-gray-400 xl:size-12",
+                )}
+              />
+              <p
+                className={cn(
+                  "text-sm font-medium leading-none text-gray-500 dark:text-gray-400",
+                )}
+                > 
+                Choose Folder
+              </p>
             </div>
             <input
               id="file"
@@ -99,8 +107,11 @@ export const UploadForm = () => {
           </Label>
           <Button
             className="w-full px-4 bg-sky-500 hover:bg-sky-600"
+            disabled={isLoading}
             >
-            Upload
+            {isLoading ? (
+              <Spinner className="text-white" />
+            ) : "Upload"}
           </Button>
         </form>
       </DialogContent>
