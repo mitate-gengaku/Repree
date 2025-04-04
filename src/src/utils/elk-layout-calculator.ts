@@ -30,8 +30,8 @@ export class ELKLayoutCalculator {
       },
       children: this.nodes.map((node) => ({
         id: node.id,
-        width: 250,
-        height: 120,
+        width: 400,
+        height: 180,
         labels: [{ text: node.data.name as string }],
       })),
       edges: this.edges.map((edge) => ({

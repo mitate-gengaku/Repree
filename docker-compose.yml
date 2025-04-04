@@ -9,4 +9,4 @@ services:
     tty: true
     stdin_open: true
     volumes:
-      - ./src:/home/node/depix
+      - ./src:/home/node/repree

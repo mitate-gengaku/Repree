@@ -24,6 +24,7 @@ import { Main } from "@/components/layout/main";
 import { ControlPanel } from "@/components/lib/controls/control-panel";
 import { HighlightEdge } from "@/components/lib/edge/highlight";
 import { FileNode } from "@/components/lib/node/file-node";
+import { NodeModulesNode } from "@/components/lib/node/node-modules-node";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { UploadButton } from "@/features/upload/components/upload-button";
 import { UploadForm } from "@/features/upload/components/upload-form";
@@ -201,11 +202,15 @@ export default function Flow() {
 
   const nodeTypes = {
     file: FileNode,
+    modules: NodeModulesNode,
   };
 
   const edgeTypes = {
     highlight: HighlightEdge,
   };
+
+  console.log(nodes);
+  console.log(edges);
 
   return (
     <SidebarProvider className="w-full h-full">

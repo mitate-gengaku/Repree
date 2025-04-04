@@ -43,9 +43,6 @@ export const UploadForm = () => {
         setNodes(response.nodes);
         setEdges(response.edges);
 
-        console.log(response.nodes);
-        console.log(response.edges);
-
         setOpen(false);
         setLoading(false);
       } catch (e) {
