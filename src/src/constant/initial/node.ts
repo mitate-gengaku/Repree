@@ -1,8 +1,8 @@
 import { Node } from "@xyflow/react";
 
-import { FileNodeData } from "@/types/file-node-data";
+import { CustomNodeData } from "@/types/custom-node-data";
 
-export const initialNodes: Node<FileNodeData>[] = [
+export const initialNodes: Node<CustomNodeData>[] = [
   {
     id: "node_0_src/middleware.ts_2d52d8d2-4dff-4a56-bd0b-b479060225eb",
     data: {
