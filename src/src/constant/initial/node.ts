@@ -1,10 +1,10 @@
 import { Node } from "@xyflow/react";
 
-import { FileNodeData } from "@/types/file-node-data";
+import { CustomNodeData } from "@/types/custom-node-data";
 
-export const initialNodes: Node<FileNodeData>[] = [
+export const initialNodes: Node<CustomNodeData>[] = [
   {
-    id: "node_0_src/middleware.ts_7eac2ec8-67ba-490b-a565-352efe58aba8",
+    id: "node_0_src/middleware.ts_2d52d8d2-4dff-4a56-bd0b-b479060225eb",
     data: {
       label: "middleware.ts",
       directory: "src",
@@ -14,12 +14,17 @@ export const initialNodes: Node<FileNodeData>[] = [
     },
     type: "file",
     position: {
-      x: 1472,
-      y: 744,
+      x: 1722,
+      y: 1014,
     },
+    measured: {
+      width: 272,
+      height: 168,
+    },
+    selected: false,
   },
   {
-    id: "node_1_src/next.config.ts_c0da7cdd-6f8f-4fef-b4ba-61e9c0f6a0ed",
+    id: "node_1_src/next.config.ts_9facb555-441d-43ba-84ea-ee04a4b0e3a4",
     data: {
       label: "next.config.ts",
       directory: "src",
@@ -32,9 +37,14 @@ export const initialNodes: Node<FileNodeData>[] = [
       x: 12,
       y: 12,
     },
+    measured: {
+      width: 272,
+      height: 168,
+    },
+    selected: false,
   },
   {
-    id: "node_2_src/tailwind.config.ts_8e158cff-7d23-4640-ae1c-4d6ec7f76fa8",
+    id: "node_2_src/tailwind.config.ts_6d4a9b7b-2107-427a-ba4c-520e1f18154f",
     data: {
       label: "tailwind.config.ts",
       directory: "src",
@@ -44,12 +54,17 @@ export const initialNodes: Node<FileNodeData>[] = [
     },
     type: "file",
     position: {
-      x: 282,
+      x: 332,
       y: 12,
     },
+    measured: {
+      width: 272,
+      height: 168,
+    },
+    selected: false,
   },
   {
-    id: "node_3_src/utils/cn.ts_cebeefe6-3092-4443-b764-b8fefe700b32",
+    id: "node_3_src/utils/cn.ts_4667c2b3-e73c-41b1-abc6-7ac00a07a6c6",
     data: {
       label: "cn.ts",
       directory: "utils",
@@ -59,12 +74,17 @@ export const initialNodes: Node<FileNodeData>[] = [
     },
     type: "file",
     position: {
-      x: 862,
-      y: 1395,
+      x: 1012,
+      y: 1905,
     },
+    measured: {
+      width: 272,
+      height: 168,
+    },
+    selected: false,
   },
   {
-    id: "node_4_src/types/edge.ts_659395f2-851b-4b15-b21b-eddd3f814a2b",
+    id: "node_4_src/types/edge.ts_a3617bd2-7f13-4560-8b4d-67d101dd15d2",
     data: {
       label: "edge.ts",
       directory: "types",
@@ -74,12 +94,17 @@ export const initialNodes: Node<FileNodeData>[] = [
     },
     type: "file",
     position: {
-      x: 862,
-      y: 603,
+      x: 1012,
+      y: 813,
     },
+    measured: {
+      width: 272,
+      height: 168,
+    },
+    selected: false,
   },
   {
-    id: "node_5_src/types/elk-graph.ts_6f651ce3-d9a2-40d9-857f-0aee60b3fab7",
+    id: "node_5_src/types/elk-graph.ts_9da93ad9-a742-4098-9760-74c7f5359b58",
     data: {
       label: "elk-graph.ts",
       directory: "types",
@@ -89,12 +114,17 @@ export const initialNodes: Node<FileNodeData>[] = [
     },
     type: "file",
     position: {
-      x: 552,
-      y: 433,
+      x: 652,
+      y: 583,
     },
+    measured: {
+      width: 272,
+      height: 168,
+    },
+    selected: false,
   },
   {
-    id: "node_6_src/types/file.ts_f654b983-2e56-4427-b2e6-596f880f2ff2",
+    id: "node_6_src/types/file.ts_364d0294-c941-41a7-ad0d-d255f3ee3ff4",
     data: {
       label: "file.ts",
       directory: "types",
@@ -104,12 +134,17 @@ export const initialNodes: Node<FileNodeData>[] = [
     },
     type: "file",
     position: {
-      x: 862,
+      x: 1012,
       y: 23,
     },
+    measured: {
+      width: 272,
+      height: 168,
+    },
+    selected: false,
   },
   {
-    id: "node_7_src/types/import.ts_64b816c1-b201-4566-b5e9-9b4467f054d0",
+    id: "node_7_src/types/import.ts_c8ef13ed-6020-4368-bd38-6081497ea902",
     data: {
       label: "import.ts",
       directory: "types",
@@ -119,12 +154,17 @@ export const initialNodes: Node<FileNodeData>[] = [
     },
     type: "file",
     position: {
-      x: 552,
+      x: 652,
       y: 23,
     },
+    measured: {
+      width: 272,
+      height: 168,
+    },
+    selected: false,
   },
   {
-    id: "node_8_src/types/node.ts_8f032efb-f574-4fd9-b138-ae2d0c507546",
+    id: "node_8_src/types/node.ts_bff97424-1ac6-4c63-ab32-0dd19220eb6f",
     data: {
       label: "node.ts",
       directory: "types",
@@ -134,12 +174,17 @@ export const initialNodes: Node<FileNodeData>[] = [
     },
     type: "file",
     position: {
-      x: 862,
-      y: 193,
+      x: 1012,
+      y: 253,
     },
+    measured: {
+      width: 272,
+      height: 168,
+    },
+    selected: false,
   },
   {
-    id: "node_9_src/i18n/client.tsx_cf4987c1-32dd-47d0-823a-9c295fedda40",
+    id: "node_9_src/i18n/client.tsx_3de7ec30-af0f-49fa-8748-28b9183fbc76",
     data: {
       label: "client.tsx",
       directory: "i18n",
@@ -149,12 +194,17 @@ export const initialNodes: Node<FileNodeData>[] = [
     },
     type: "file",
     position: {
-      x: 1167,
-      y: 574,
+      x: 1367,
+      y: 784,
     },
+    measured: {
+      width: 272,
+      height: 168,
+    },
+    selected: false,
   },
   {
-    id: "node_10_src/i18n/server.ts_346a6919-ef8f-49db-b51c-24160bfe4f27",
+    id: "node_10_src/i18n/server.ts_66cfc7c3-80bf-4d1c-957e-84492c69de36",
     data: {
       label: "server.ts",
       directory: "i18n",
@@ -164,12 +214,17 @@ export const initialNodes: Node<FileNodeData>[] = [
     },
     type: "file",
     position: {
-      x: 1167,
-      y: 744,
+      x: 1367,
+      y: 1014,
     },
+    measured: {
+      width: 272,
+      height: 168,
+    },
+    selected: false,
   },
   {
-    id: "node_11_src/i18n/setting.ts_cb11a773-27ed-42af-8f7a-2c05e74eb9a5",
+    id: "node_11_src/i18n/setting.ts_0afe1852-b9d4-4bab-90aa-5bd593e1bb8b",
     data: {
       label: "setting.ts",
       directory: "i18n",
@@ -179,12 +234,17 @@ export const initialNodes: Node<FileNodeData>[] = [
     },
     type: "file",
     position: {
-      x: 862,
-      y: 744,
+      x: 1012,
+      y: 1014,
     },
+    measured: {
+      width: 272,
+      height: 168,
+    },
+    selected: false,
   },
   {
-    id: "node_12_src/feature/analyze.ts_d6c26a09-d33c-4996-b867-abcae21ffff0",
+    id: "node_12_src/feature/analyze.ts_5a9c14d0-491c-46cf-ab90-aac8f5c8b2e8",
     data: {
       label: "analyze.ts",
       directory: "feature",
@@ -194,12 +254,17 @@ export const initialNodes: Node<FileNodeData>[] = [
     },
     type: "file",
     position: {
-      x: 1167,
-      y: 263,
+      x: 1367,
+      y: 353,
     },
+    measured: {
+      width: 272,
+      height: 168,
+    },
+    selected: false,
   },
   {
-    id: "node_13_src/feature/elk-layout-calculator.ts_c7f07fcb-eeb3-49cb-ad7d-55b260499e7c",
+    id: "node_13_src/feature/elk-layout-calculator.ts_493fddfa-e636-4c3f-b778-fc4b1f4d2c91",
     data: {
       label: "elk-layout-calculator.ts",
       directory: "feature",
@@ -209,12 +274,17 @@ export const initialNodes: Node<FileNodeData>[] = [
     },
     type: "file",
     position: {
-      x: 862,
-      y: 433,
+      x: 1012,
+      y: 583,
     },
+    measured: {
+      width: 272,
+      height: 168,
+    },
+    selected: false,
   },
   {
-    id: "node_14_src/const/edge.ts_d21ff9aa-998e-4a8f-97a3-149dd45eac3f",
+    id: "node_14_src/const/edge.ts_fd161a87-c5d0-4ebf-a132-92920d8901f7",
     data: {
       label: "edge.ts",
       directory: "const",
@@ -224,12 +294,17 @@ export const initialNodes: Node<FileNodeData>[] = [
     },
     type: "file",
     position: {
-      x: 552,
-      y: 673,
+      x: 652,
+      y: 913,
     },
+    measured: {
+      width: 272,
+      height: 168,
+    },
+    selected: false,
   },
   {
-    id: "node_15_src/const/node.ts_6c593a66-9d07-4274-864d-ab6c62779acd",
+    id: "node_15_src/const/node.ts_2941b046-764d-4f1e-b371-2db5947680ed",
     data: {
       label: "node.ts",
       directory: "const",
@@ -239,12 +314,17 @@ export const initialNodes: Node<FileNodeData>[] = [
     },
     type: "file",
     position: {
-      x: 552,
-      y: 263,
+      x: 652,
+      y: 353,
     },
+    measured: {
+      width: 272,
+      height: 168,
+    },
+    selected: false,
   },
   {
-    id: "node_16_src/components/ui/button.tsx_8584d106-ab47-48df-9e97-dd91fda348e0",
+    id: "node_16_src/components/ui/button.tsx_fbaa0af8-2f3b-49b6-abff-5175c955dc57",
     data: {
       label: "button.tsx",
       directory: "ui",
@@ -254,12 +334,17 @@ export const initialNodes: Node<FileNodeData>[] = [
     },
     type: "file",
     position: {
-      x: 1167,
-      y: 1225,
+      x: 1367,
+      y: 1675,
     },
+    measured: {
+      width: 272,
+      height: 168,
+    },
+    selected: false,
   },
   {
-    id: "node_17_src/components/ui/dialog.tsx_f0a717d1-4691-46e6-80fe-b0a456bef412",
+    id: "node_17_src/components/ui/dialog.tsx_8d45b348-d150-4fc9-8a97-d03e09601c0f",
     data: {
       label: "dialog.tsx",
       directory: "ui",
@@ -269,12 +354,17 @@ export const initialNodes: Node<FileNodeData>[] = [
     },
     type: "file",
     position: {
-      x: 1167,
-      y: 1055,
+      x: 1367,
+      y: 1445,
     },
+    measured: {
+      width: 272,
+      height: 168,
+    },
+    selected: false,
   },
   {
-    id: "node_18_src/components/ui/label.tsx_633ce2a5-68ee-40ab-98a6-73c52c346b13",
+    id: "node_18_src/components/ui/label.tsx_62f3048b-cd89-4ede-8ae2-aa0550cc74ff",
     data: {
       label: "label.tsx",
       directory: "ui",
@@ -284,12 +374,17 @@ export const initialNodes: Node<FileNodeData>[] = [
     },
     type: "file",
     position: {
-      x: 1167,
-      y: 914,
+      x: 1367,
+      y: 1244,
     },
+    measured: {
+      width: 272,
+      height: 168,
+    },
+    selected: false,
   },
   {
-    id: "node_19_src/components/ui/sonner.tsx_74dcf72a-9acf-4098-8de7-064c92652750",
+    id: "node_19_src/components/ui/sonner.tsx_83351de6-4d4f-473b-8991-27d2bd431736",
     data: {
       label: "sonner.tsx",
       directory: "ui",
@@ -299,12 +394,17 @@ export const initialNodes: Node<FileNodeData>[] = [
     },
     type: "file",
     position: {
-      x: 1162,
-      y: 1575,
+      x: 1362,
+      y: 2145,
     },
+    measured: {
+      width: 272,
+      height: 168,
+    },
+    selected: false,
   },
   {
-    id: "node_20_src/components/loading/spinner/index.tsx_22a24642-c2f2-4cb6-8ae5-ef704a0de7be",
+    id: "node_20_src/components/loading/spinner/index.tsx_4bb6bcb1-01d1-4cd2-ac9c-1d035bc49063",
     data: {
       label: "index.tsx",
       directory: "spinner",
@@ -314,12 +414,17 @@ export const initialNodes: Node<FileNodeData>[] = [
     },
     type: "file",
     position: {
-      x: 1162,
-      y: 1395,
+      x: 1362,
+      y: 1905,
     },
+    measured: {
+      width: 272,
+      height: 168,
+    },
+    selected: false,
   },
   {
-    id: "node_21_src/components/libs/react-flow.tsx_a08d754d-ff3d-4b8b-a2ad-7bca3a8faf4a",
+    id: "node_21_src/components/libs/react-flow.tsx_3672273f-75ce-459f-bf13-aea9a416c540",
     data: {
       label: "react-flow.tsx",
       directory: "libs",
@@ -329,12 +434,17 @@ export const initialNodes: Node<FileNodeData>[] = [
     },
     type: "file",
     position: {
-      x: 1472,
-      y: 914,
+      x: 1722,
+      y: 1244,
     },
+    measured: {
+      width: 272,
+      height: 168,
+    },
+    selected: false,
   },
   {
-    id: "node_22_src/app/[lang]/layout.tsx_ffa71680-9361-4d0c-a19b-a6fe595e6c0c",
+    id: "node_22_src/app/[lang]/layout.tsx_3bcbeab9-1fee-4087-b343-6690fa3a4441",
     data: {
       label: "layout.tsx",
       directory: "[lang]",
@@ -344,12 +454,17 @@ export const initialNodes: Node<FileNodeData>[] = [
     },
     type: "file",
     position: {
-      x: 1472,
-      y: 1575,
+      x: 1722,
+      y: 2145,
     },
+    measured: {
+      width: 272,
+      height: 168,
+    },
+    selected: false,
   },
   {
-    id: "node_23_src/app/[lang]/page.tsx_fa0ebf17-5ef9-4531-bc64-b504802b7eaa",
+    id: "node_23_src/app/[lang]/page.tsx_62ddc8f3-a584-4e47-afc6-e3d32df93c42",
     data: {
       label: "page.tsx",
       directory: "[lang]",
@@ -359,8 +474,13 @@ export const initialNodes: Node<FileNodeData>[] = [
     },
     type: "file",
     position: {
-      x: 1772,
-      y: 914,
+      x: 2072,
+      y: 1244,
     },
+    measured: {
+      width: 272,
+      height: 168,
+    },
+    selected: false,
   },
 ];

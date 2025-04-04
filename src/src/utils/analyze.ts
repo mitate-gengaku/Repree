@@ -17,6 +17,8 @@ class ImportExportAnalyzer {
     string,
     { nodeId: string; imports: Import[]; exports: string[] }
   >();
+  // node_modulesのパッケージを追跡するためのマップを追加
+  private nodeModulesMap = new Map<string, string>();
 
   constructor() {}
 
@@ -121,6 +123,33 @@ class ImportExportAnalyzer {
     };
   }
 
+  // node_modulesからのインポートかどうかを判定するヘルパーメソッド
+  private isNodeModuleImport(importPath: string): boolean {
+    // node_modulesのインポートは通常 ./ や ../ で始まらない
+    return !importPath.startsWith(".") && !importPath.startsWith("/");
+  }
+
+  // インポートパスからパッケージ名を抽出するヘルパーメソッド
+  private getPackageName(importPath: string): string | null {
+    const segments = importPath.split("/");
+
+    // @で始まるスコープ付きパッケージの場合
+    if (segments[0].startsWith("@")) {
+      // @/ のような不正なパターンの場合はnullを返す
+      if (segments[0] === "@") {
+        return null; // @のあとに直接/が来る場合は無視
+      }
+
+      // 正常なスコープ付きパッケージ（例: @org/package-name）
+      if (segments.length > 1) {
+        return `${segments[0]}/${segments[1]}`;
+      }
+    }
+
+    // 通常のパッケージの場合（例: react）
+    return segments[0];
+  }
+
   async generateComponentGraph(
     files: File[],
   ): Promise<{ nodes: Node[]; edges: Edge[] }> {
@@ -130,6 +159,7 @@ class ImportExportAnalyzer {
       jsFiles.map((file) => this.analyzeFile(file)),
     );
 
+    // 第1パス: プロジェクトファイル用のノードを作成
     fileAnalyses.forEach((analysis, index) => {
       const id = uuidv4();
       const nodeId = `node_${index}_${analysis.filePath}_${id}`;
@@ -156,28 +186,87 @@ class ImportExportAnalyzer {
       });
     });
 
+    // 第2パス: node_modules依存関係用のノードを作成
+    fileAnalyses.forEach((analysis) => {
+      analysis.imports.forEach((importItem) => {
+        if (this.isNodeModuleImport(importItem.source)) {
+          const packageName = this.getPackageName(importItem.source);
+          // @/ のようなパターンはスキップ
+          if (packageName && !this.nodeModulesMap.has(packageName)) {
+            const nodeModuleId = `node_module_${packageName}_${uuidv4()}`;
+            this.nodeModulesMap.set(packageName, nodeModuleId);
+
+            // node_module用のノードを作成
+            const nodeModuleNode: Node = {
+              id: nodeModuleId,
+              data: {
+                label: packageName,
+                directory: "node_modules",
+                path: "node_modules/" + packageName,
+                size: 0, // サイズは不明
+                highlight: false,
+                isNodeModule: true, // node_modulesを識別するフラグ
+              },
+              type: "modules", // スタイリング用の異なるタイプ
+              position: { x: 0, y: 0 },
+            };
+
+            this.nodes.push(nodeModuleNode);
+          }
+        }
+      });
+    });
+
+    // 第3パス: ファイルとnode_modules間のエッジを作成
     this.nodes.forEach((node) => {
+      if (node.type === "nodeModule") return; // エッジ作成時にnode_modulesはスキップ
+
       const sourceComponent = this.componentMap.get(node.data.label as string);
       if (sourceComponent) {
         sourceComponent.imports.forEach((importItem) => {
           const id = uuidv4();
-          const targetComponentName = path.basename(
-            importItem.source,
-            path.extname(importItem.source),
-          );
-          const targetComponent = Array.from(this.componentMap.entries()).find(
-            ([label]) =>
-              label.slice(0, label.lastIndexOf(".")) === targetComponentName,
-          );
 
-          if (targetComponent) {
-            this.edges.push({
-              id: `edge_${node.id}_${targetComponent[1].nodeId}_${id}`,
-              source: targetComponent[1].nodeId,
-              target: node.id,
-              sourceHandle: "",
-              targetHandle: "",
-            });
+          if (this.isNodeModuleImport(importItem.source)) {
+            // node_moduleインポートの処理
+            const packageName = this.getPackageName(importItem.source);
+
+            // @/ のようなパターンは無視
+            if (packageName) {
+              const nodeModuleId = this.nodeModulesMap.get(packageName);
+
+              if (nodeModuleId) {
+                this.edges.push({
+                  id: `edge_${node.id}_${nodeModuleId}_${id}`,
+                  source: nodeModuleId,
+                  target: node.id,
+                  sourceHandle: "",
+                  targetHandle: "",
+                });
+              }
+            }
+          } else {
+            // ローカルファイルインポートの処理（既存のロジック）
+            const targetComponentName = path.basename(
+              importItem.source,
+              path.extname(importItem.source),
+            );
+            const targetComponent = Array.from(
+              this.componentMap.entries(),
+            ).find(
+              ([label]) =>
+                label === targetComponentName ||
+                label.slice(0, label.lastIndexOf(".")) === targetComponentName,
+            );
+
+            if (targetComponent) {
+              this.edges.push({
+                id: `edge_${node.id}_${targetComponent[1].nodeId}_${id}`,
+                source: targetComponent[1].nodeId,
+                target: node.id,
+                sourceHandle: "",
+                targetHandle: "",
+              });
+            }
           }
         });
       }
