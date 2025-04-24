@@ -209,9 +209,6 @@ export default function Flow() {
     highlight: HighlightEdge,
   };
 
-  console.log(nodes);
-  console.log(edges);
-
   return (
     <SidebarProvider className="w-full h-full">
       <Header />
