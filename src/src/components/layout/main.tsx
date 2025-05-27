@@ -13,6 +13,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Combobox } from "@/components/ui/combobox";
 import {
   ResizableHandle,
   ResizablePanel,
@@ -23,9 +24,10 @@ import { nodesAtom } from "@/stores/node";
 
 interface Props {
   children: ReactNode;
+  focusNode: (nodeId: string) => void;
 }
 
-export const Main = ({ children }: Props) => {
+export const Main = ({ children, focusNode }: Props) => {
   const nodes = useAtomValue(nodesAtom);
   const isMobile = useIsMobile();
 
@@ -43,6 +45,7 @@ export const Main = ({ children }: Props) => {
           >
             <Sidebar>
               <div className="flex flex-col gap-4">
+                <Combobox nodes={nodes} focusNode={focusNode} />
                 <div>
                   <div className="flex items-center justify-between">
                     <p className="text-gray-500 text-xs">All Files</p>
