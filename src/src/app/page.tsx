@@ -1,4 +1,5 @@
 "use client";
+
 import {
   ReactFlow,
   addEdge,
@@ -211,8 +212,8 @@ export default function Flow() {
 
   return (
     <SidebarProvider className="w-full h-full">
-      <Header />
-      <Main>
+      <Header focusNode={focusNode} />
+      <Main focusNode={focusNode}>
         <ReactFlow
           nodes={nodes}
           edges={edges}

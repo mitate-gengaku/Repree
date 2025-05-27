@@ -1,14 +1,22 @@
 "use client";
 
+import { useAtomValue } from "jotai";
+
 import { SiteLogo } from "@/components/icons/site-logo";
 import { GithubLink } from "@/components/layout/github-link";
 import { MobileSidebar } from "@/components/layout/mobile-sidebar";
 import { Button } from "@/components/ui/button";
+import { Combobox } from "@/components/ui/combobox";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { ToggleThemeButton } from "@/features/theme/components/toggle-button";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { nodesAtom } from "@/stores/node";
+interface Props {
+  focusNode: (nodeId: string) => void;
+}
 
-export const Header = () => {
+export const Header = ({ focusNode }: Props) => {
+  const nodes = useAtomValue(nodesAtom);
   const isMobile = useIsMobile();
 
   return (
@@ -20,9 +28,14 @@ export const Header = () => {
             <MobileSidebar />
           </>
         )}
-        <h1 className="mx-auto md:mx-0 select-none flex items-center font-bold cursor-default">
+        <h1 className="ml-10 md:mx-0 select-none flex items-center font-bold cursor-default">
           <SiteLogo className="w-24 h-7" />
         </h1>
+        {isMobile && (
+          <div className="ml-auto">
+            <Combobox nodes={nodes} focusNode={focusNode} />
+          </div>
+        )}
         {!isMobile && (
           <div className="ml-auto flex items-center gap-2">
             <ToggleThemeButton />
