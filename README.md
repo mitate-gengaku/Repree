@@ -22,3 +22,6 @@ You can choose theme light・dark・system
 ### Sidebar
 The sidebar displays a list of files and the list of node modules being used.
 ![sidebar](/assets/sidebar.png)
+
+### Search
+You can search nodes in combobox component.
