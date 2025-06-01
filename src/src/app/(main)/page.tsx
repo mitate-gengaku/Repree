@@ -27,7 +27,6 @@ import { ControlPanel } from "@/components/lib/controls/control-panel";
 import { HighlightEdge } from "@/components/lib/edge/highlight";
 import { FileNode } from "@/components/lib/node/file-node";
 import { NodeModulesNode } from "@/components/lib/node/node-modules-node";
-import { SidebarProvider } from "@/components/ui/sidebar";
 import { UploadButton } from "@/features/upload/components/upload-button";
 import { UploadForm } from "@/features/upload/components/upload-form";
 import { useIsTouchDevice } from "@/hooks/use-is-touch-device";
@@ -210,7 +209,7 @@ export default function Flow() {
   };
 
   return (
-    <SidebarProvider className="w-full h-full">
+    <>
       <Header focusNode={focusNode} />
       <Main focusNode={focusNode}>
         <ReactFlow
@@ -251,6 +250,6 @@ export default function Flow() {
         </ReactFlow>
       </Main>
       <UploadForm />
-    </SidebarProvider>
+    </>
   );
 }
