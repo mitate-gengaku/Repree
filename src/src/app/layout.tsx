@@ -1,5 +1,4 @@
 import { Analytics } from "@vercel/analytics/react";
-import { ReactFlowProvider } from "@xyflow/react";
 import { Geist } from "next/font/google";
 
 import type { Metadata } from "next";
@@ -7,7 +6,6 @@ import type { Metadata } from "next";
 import "@/app/globals.css";
 import "@xyflow/react/dist/base.css";
 
-import { ThemeProvider } from "@/features/theme/components/theme-provider";
 import { cn } from "@/lib/utils";
 
 const geistSans = Geist({
@@ -49,14 +47,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn("w-screen h-screen antialiased", geistSans.variable)}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <ReactFlowProvider>{children}</ReactFlowProvider>
-        </ThemeProvider>
+        {children}
         <Analytics />
       </body>
     </html>

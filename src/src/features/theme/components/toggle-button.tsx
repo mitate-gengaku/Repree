@@ -26,7 +26,7 @@ export const ToggleThemeButton = () => {
       <Button
         variant={"ghost"}
         size={"icon"}
-        className="ml-auto hidden invisible md:block md:visible"
+        className="ml-auto hidden invisible sm:block sm:visible"
         disabled
       >
         <Spinner className="text-sky-600" />
@@ -39,7 +39,7 @@ export const ToggleThemeButton = () => {
         <Button
           variant="outline"
           size="icon"
-          className="md:ml-auto"
+          className="sm:ml-auto"
           suppressHydrationWarning
         >
           {theme === "light" && <SunIcon className="h-[1.2rem] w-[1.2rem]" />}

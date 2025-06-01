@@ -1,7 +1,7 @@
 "use client";
 
-import { useAtomValue } from "jotai";
 import { ReactNode } from "react";
+import { isMobile } from "react-device-detect";
 
 import { JavaScriptIcon } from "@/components/icons/javascript";
 import { NpmLogoIcon } from "@/components/icons/npm";
@@ -19,23 +19,19 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
-import { useIsMobile } from "@/hooks/use-mobile";
-import { nodesAtom } from "@/stores/node";
+import { useFlow } from "@/hooks/use-flow";
 
 interface Props {
   children: ReactNode;
-  focusNode: (nodeId: string) => void;
 }
 
-export const Main = ({ children, focusNode }: Props) => {
-  const nodes = useAtomValue(nodesAtom);
-  const isMobile = useIsMobile();
+export const Main = ({ children }: Props) => {
+  const { nodes, nodeModules, files, onFocusNode } = useFlow();
 
   return (
     <main className="w-full h-full pt-12">
-      {isMobile ? (
-        <>{children}</>
-      ) : (
+      {isMobile && <>{children}</>}
+      {!isMobile && (
         <ResizablePanelGroup direction="horizontal">
           <ResizablePanel
             className="h-screen overflow-hidden border-r pt-4"
@@ -45,15 +41,14 @@ export const Main = ({ children, focusNode }: Props) => {
           >
             <Sidebar>
               <div className="flex flex-col gap-4">
-                <Combobox nodes={nodes} focusNode={focusNode} />
+                <Combobox nodes={nodes} focusNode={onFocusNode} />
                 <div>
                   <div className="flex items-center justify-between">
                     <p className="text-gray-500 text-xs">All Files</p>
                   </div>
                   <Accordion type="single" collapsible className="mb-8">
-                    {nodes
-                      .filter((node) => node.type === "file")
-                      .map((node) => (
+                    {files.length ? (
+                      files.map((node) => (
                         <AccordionItem
                           value={node.id}
                           key={node.id}
@@ -106,16 +101,18 @@ export const Main = ({ children, focusNode }: Props) => {
                             </div>
                           </AccordionContent>
                         </AccordionItem>
-                      ))}
+                      ))
+                    ) : (
+                      <p className="text-sm font-semibold">no files</p>
+                    )}
                   </Accordion>
 
                   <div className="flex items-center justify-between">
                     <p className="text-gray-500 text-xs">node_modules</p>
                   </div>
                   <Accordion type="single" collapsible>
-                    {nodes
-                      .filter((node) => node.type === "modules")
-                      .map((node) => (
+                    {nodeModules.length ? (
+                      nodeModules.map((node) => (
                         <AccordionItem
                           value={node.id}
                           key={node.id}
@@ -150,7 +147,10 @@ export const Main = ({ children, focusNode }: Props) => {
                             </div>
                           </AccordionContent>
                         </AccordionItem>
-                      ))}
+                      ))
+                    ) : (
+                      <p className="text-sm font-semibold">no modules</p>
+                    )}
                   </Accordion>
                 </div>
               </div>
