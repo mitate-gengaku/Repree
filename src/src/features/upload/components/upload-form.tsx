@@ -1,6 +1,6 @@
-import { useAtom, useSetAtom } from "jotai";
+"use client";
+
 import { FolderIcon } from "lucide-react";
-import { FormEvent, useRef, useState } from "react";
 
 import { Spinner } from "@/components/loading/spinner";
 import { Button } from "@/components/ui/button";
@@ -12,46 +12,11 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
+import { useUpload } from "@/hooks/use-upload";
 import { cn } from "@/lib/utils";
-import { fetchFolderAnalyze } from "@/service/fetch-folder-analyze";
-import { openDialogAtom } from "@/stores/dialog";
-import { edgesAtom } from "@/stores/edge";
-import { nodesAtom } from "@/stores/node";
 
 export const UploadForm = () => {
-  const [isLoading, setLoading] = useState<boolean>(false);
-  const inputRef = useRef<HTMLInputElement | null>(null);
-  const [open, setOpen] = useAtom(openDialogAtom);
-  const setNodes = useSetAtom(nodesAtom);
-  const setEdges = useSetAtom(edgesAtom);
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    setLoading(true);
-    const formData = new FormData();
-    const files = inputRef.current?.files;
-
-    if (files) {
-      for (const file of files) {
-        formData.append("files[]", file, file.webkitRelativePath);
-      }
-
-      try {
-        const response = await fetchFolderAnalyze("/api/analyze", formData);
-
-        setNodes(response.nodes);
-        setEdges(response.edges);
-
-        setOpen(false);
-        setLoading(false);
-      } catch (e) {
-        console.error(e);
-        setOpen(false);
-        setLoading(false);
-      }
-    }
-  };
+  const { isLoading, inputRef, open, setOpen, handleSubmit } = useUpload();
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>

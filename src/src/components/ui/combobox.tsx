@@ -1,8 +1,9 @@
 "use client";
 
 import { Node } from "@xyflow/react";
-import { Check, ChevronsUpDown } from "lucide-react";
+import { CheckIcon, ChevronsUpDown } from "lucide-react";
 import * as React from "react";
+import { isMobile } from "react-device-detect";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -34,6 +35,7 @@ export function Combobox({ nodes, focusNode }: Props) {
       <PopoverTrigger asChild>
         <Button
           variant="outline"
+          size={isMobile ? "sm" : "default"}
           role="combobox"
           aria-expanded={open}
           className="justify-between"
@@ -46,8 +48,9 @@ export function Combobox({ nodes, focusNode }: Props) {
         </Button>
       </PopoverTrigger>
       <PopoverContent
-        className="max-w-[255px] md:maw-w-auto md:min-w-[200px] p-0"
-        align="start"
+        className="p-0 w-full min-w-72"
+        align={isMobile ? "end" : "start"}
+        sideOffset={10}
       >
         <Command>
           <CommandInput placeholder="Search nodes..." />
@@ -66,10 +69,11 @@ export function Combobox({ nodes, focusNode }: Props) {
                       focusNode(nodes.find((n) => n.id === node.id)?.id ?? "");
                     }
                   }}
+                  className="data-[selected=true]:bg-sky-50 dark:data-[selected=true]:bg-sky-950"
                 >
-                  <Check
+                  <CheckIcon
                     className={cn(
-                      "mr-2 h-4 w-4",
+                      "mr-2 h-4 w-4 text-sky-500 dark:text-sky-400",
                       value === node.data.label ? "opacity-100" : "opacity-0",
                     )}
                   />

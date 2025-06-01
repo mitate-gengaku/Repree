@@ -1,5 +1,5 @@
 import { ControlButton } from "@xyflow/react";
-import { useAtomValue, useSetAtom } from "jotai";
+import { useAtom } from "jotai";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { useState } from "react";
 
@@ -13,8 +13,8 @@ import { selectNodeAtom } from "@/stores/select-node";
 
 export const ShowSelectionNodeControl = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const isSelectNode = useAtomValue(selectNodeAtom);
-  const setNodes = useSetAtom(nodesAtom);
+  const [isSelectNode] = useAtom(selectNodeAtom);
+  const [, setNodes] = useAtom(nodesAtom);
 
   const onHandleOpen = () => {
     setOpen((open) => !open);
