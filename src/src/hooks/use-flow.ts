@@ -11,8 +11,8 @@ import {
   NodeMouseHandler,
   useReactFlow,
 } from "@xyflow/react";
-import { useAtom, useAtomValue } from "jotai";
-import { useCallback } from "react";
+import { useAtom } from "jotai";
+import { useCallback, useMemo } from "react";
 
 import { HighlightEdge } from "@/components/lib/edge/highlight";
 import { FileNode } from "@/components/lib/node/file-node";
@@ -28,7 +28,7 @@ export const useFlow = () => {
   const [_, setSelect] = useAtom(selectNodeAtom);
   const [nodes, setNodes] = useAtom(nodesAtom);
   const [edges, setEdges] = useAtom(edgesAtom);
-  const theme = useAtomValue(themeAtom);
+  const [theme] = useAtom(themeAtom);
   const { setCenter } = useReactFlow();
 
   const onNodesChange: OnNodesChange = useCallback(
@@ -136,12 +136,26 @@ export const useFlow = () => {
     highlight: HighlightEdge,
   };
 
+  const files = useMemo(
+    () => nodes.filter((node) => node.type === "file"),
+    [nodes],
+  );
+
+  const nodeModules = useMemo(
+    () => nodes.filter((node) => node.type === "modules"),
+    [nodes],
+  );
+
   return {
     nodes,
     edges,
     theme,
     nodeTypes,
     edgeTypes,
+    nodeModules,
+    files,
+    setNodes,
+    setEdges,
     onNodesChange,
     onEdgesChange,
     onNodeClick,

@@ -1,21 +1,18 @@
 "use client";
 
-import { useAtom } from "jotai";
 import { isMobile } from "react-device-detect";
 
 import { SiteLogo } from "@/components/icons/site-logo";
-import { GithubLink } from "@/components/layout/github-link";
 import { MobileSidebar } from "@/components/layout/mobile-sidebar";
 import { Button } from "@/components/ui/button";
 import { Combobox } from "@/components/ui/combobox";
 import { SidebarTrigger } from "@/components/ui/sidebar";
+import { GithubLink } from "@/components/utils/github-link";
 import { ToggleThemeButton } from "@/features/theme/components/toggle-button";
 import { useFlow } from "@/hooks/use-flow";
-import { nodesAtom } from "@/stores/node";
 
 export const Header = () => {
-  const [nodes, _] = useAtom(nodesAtom);
-  const { onFocusNode } = useFlow();
+  const { nodes, onFocusNode } = useFlow();
 
   return (
     <header className="w-full fixed top-0 border-b">
@@ -26,8 +23,8 @@ export const Header = () => {
             <MobileSidebar />
           </>
         )}
-        <h1 className="ml-10 sm:mx-0 select-none flex items-center font-bold cursor-default">
-          <SiteLogo className="w-24 h-7" />
+        <h1 className="ml-8 sm:mx-0 select-none flex items-center font-bold cursor-default">
+          <SiteLogo className="w-16 sm:w-24" />
         </h1>
         {isMobile && (
           <div className="ml-auto">
