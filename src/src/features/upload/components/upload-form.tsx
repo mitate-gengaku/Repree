@@ -1,4 +1,6 @@
-import { useAtom, useSetAtom } from "jotai";
+"use client";
+
+import { useAtom } from "jotai";
 import { FolderIcon } from "lucide-react";
 import { FormEvent, useRef, useState } from "react";
 
@@ -22,8 +24,8 @@ export const UploadForm = () => {
   const [isLoading, setLoading] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [open, setOpen] = useAtom(openDialogAtom);
-  const setNodes = useSetAtom(nodesAtom);
-  const setEdges = useSetAtom(edgesAtom);
+  const [, setNodes] = useAtom(nodesAtom);
+  const [, setEdges] = useAtom(edgesAtom);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

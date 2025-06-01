@@ -3,6 +3,7 @@
 import { Node } from "@xyflow/react";
 import { Check, ChevronsUpDown } from "lucide-react";
 import * as React from "react";
+import { isMobile } from "react-device-detect";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -46,8 +47,9 @@ export function Combobox({ nodes, focusNode }: Props) {
         </Button>
       </PopoverTrigger>
       <PopoverContent
-        className="max-w-[255px] md:maw-w-auto md:min-w-[200px] p-0"
-        align="start"
+        className="p-0 w-full min-w-72"
+        align={isMobile ? "end" : "start"}
+        sideOffset={10}
       >
         <Command>
           <CommandInput placeholder="Search nodes..." />

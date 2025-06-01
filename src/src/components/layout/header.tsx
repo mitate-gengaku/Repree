@@ -1,6 +1,6 @@
 "use client";
 
-import { useAtomValue } from "jotai";
+import { useAtom } from "jotai";
 import { isMobile } from "react-device-detect";
 
 import { SiteLogo } from "@/components/icons/site-logo";
@@ -10,13 +10,12 @@ import { Button } from "@/components/ui/button";
 import { Combobox } from "@/components/ui/combobox";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { ToggleThemeButton } from "@/features/theme/components/toggle-button";
+import { useFlow } from "@/hooks/use-flow";
 import { nodesAtom } from "@/stores/node";
-interface Props {
-  focusNode: (nodeId: string) => void;
-}
 
-export const Header = ({ focusNode }: Props) => {
-  const nodes = useAtomValue(nodesAtom);
+export const Header = () => {
+  const [nodes, _] = useAtom(nodesAtom);
+  const { onFocusNode } = useFlow();
 
   return (
     <header className="w-full fixed top-0 border-b">
@@ -32,7 +31,7 @@ export const Header = ({ focusNode }: Props) => {
         </h1>
         {isMobile && (
           <div className="ml-auto">
-            <Combobox nodes={nodes} focusNode={focusNode} />
+            <Combobox nodes={nodes} focusNode={onFocusNode} />
           </div>
         )}
         {!isMobile && (

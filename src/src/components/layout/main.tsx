@@ -1,6 +1,6 @@
 "use client";
 
-import { useAtomValue } from "jotai";
+import { useAtom } from "jotai";
 import { ReactNode } from "react";
 import { isMobile } from "react-device-detect";
 
@@ -20,15 +20,16 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
+import { useFlow } from "@/hooks/use-flow";
 import { nodesAtom } from "@/stores/node";
 
 interface Props {
   children: ReactNode;
-  focusNode: (nodeId: string) => void;
 }
 
-export const Main = ({ children, focusNode }: Props) => {
-  const nodes = useAtomValue(nodesAtom);
+export const Main = ({ children }: Props) => {
+  const [nodes, _] = useAtom(nodesAtom);
+  const { onFocusNode } = useFlow();
 
   return (
     <main className="w-full h-full pt-12">
@@ -44,7 +45,7 @@ export const Main = ({ children, focusNode }: Props) => {
           >
             <Sidebar>
               <div className="flex flex-col gap-4">
-                <Combobox nodes={nodes} focusNode={focusNode} />
+                <Combobox nodes={nodes} focusNode={onFocusNode} />
                 <div>
                   <div className="flex items-center justify-between">
                     <p className="text-gray-500 text-xs">All Files</p>

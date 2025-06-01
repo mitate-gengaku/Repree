@@ -3,8 +3,10 @@ import "@xyflow/react/dist/base.css";
 
 import { ReactFlowProvider } from "@xyflow/react";
 
+import { Header } from "@/components/layout/header";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { ThemeProvider } from "@/features/theme/components/theme-provider";
+import { UploadForm } from "@/features/upload/components/upload-form";
 
 export default function MainLayout({
   children,
@@ -19,7 +21,11 @@ export default function MainLayout({
       disableTransitionOnChange
     >
       <ReactFlowProvider>
-        <SidebarProvider className="w-full h-full">{children}</SidebarProvider>
+        <SidebarProvider className="w-full h-full">
+          <Header />
+          {children}
+          <UploadForm />
+        </SidebarProvider>
       </ReactFlowProvider>
     </ThemeProvider>
   );
