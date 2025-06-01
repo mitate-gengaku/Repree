@@ -2,6 +2,7 @@
 
 import { useAtomValue } from "jotai";
 import { ReactNode } from "react";
+import { isMobile } from "react-device-detect";
 
 import { JavaScriptIcon } from "@/components/icons/javascript";
 import { NpmLogoIcon } from "@/components/icons/npm";
@@ -19,7 +20,6 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
-import { useIsMobile } from "@/hooks/use-mobile";
 import { nodesAtom } from "@/stores/node";
 
 interface Props {
@@ -29,7 +29,6 @@ interface Props {
 
 export const Main = ({ children, focusNode }: Props) => {
   const nodes = useAtomValue(nodesAtom);
-  const isMobile = useIsMobile();
 
   return (
     <main className="w-full h-full pt-12">

@@ -19,6 +19,7 @@ import {
 } from "@xyflow/react";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useCallback } from "react";
+import { isMobile } from "react-device-detect";
 
 import { Header } from "@/components/layout/header";
 import { Main } from "@/components/layout/main";
@@ -30,7 +31,6 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { UploadButton } from "@/features/upload/components/upload-button";
 import { UploadForm } from "@/features/upload/components/upload-form";
 import { useIsTouchDevice } from "@/hooks/use-is-touch-device";
-import { useIsMobile } from "@/hooks/use-mobile";
 import { edgesAtom } from "@/stores/edge";
 import { nodesAtom } from "@/stores/node";
 import { selectNodeAtom } from "@/stores/select-node";
@@ -102,7 +102,6 @@ export default function Flow() {
   const [edges, setEdges] = useAtom(edgesAtom);
   const theme = useAtomValue(themeAtom);
   const isTouchDevice = useIsTouchDevice();
-  const isMobile = useIsMobile();
   const { setCenter } = useReactFlow();
 
   const onNodesChange: OnNodesChange = useCallback(

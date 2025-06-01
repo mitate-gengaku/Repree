@@ -1,5 +1,6 @@
 import { useAtomValue, useSetAtom } from "jotai";
 import { CameraIcon, UploadIcon } from "lucide-react";
+import { isMobile } from "react-device-detect";
 
 import { JavaScriptIcon } from "@/components/icons/javascript";
 import { NpmLogoIcon } from "@/components/icons/npm";
@@ -23,14 +24,12 @@ import {
 } from "@/components/ui/sidebar";
 import { ThemeSwitch } from "@/features/theme/components/theme-switch";
 import { useDownload } from "@/hooks/use-download";
-import { useIsMobile } from "@/hooks/use-mobile";
 import { openDialogAtom } from "@/stores/dialog";
 import { nodesAtom } from "@/stores/node";
 
 export function MobileSidebar() {
   const nodes = useAtomValue(nodesAtom);
   const setOpen = useSetAtom(openDialogAtom);
-  const isMobile = useIsMobile();
   const { onDownloadImage } = useDownload();
 
   return (
