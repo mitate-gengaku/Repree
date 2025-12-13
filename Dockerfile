@@ -1,4 +1,4 @@
-FROM node:22.14.0-bullseye
+FROM node:24.12-bullseye-slim
 
 USER root
 
